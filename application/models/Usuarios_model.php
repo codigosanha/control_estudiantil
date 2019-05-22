@@ -43,9 +43,9 @@ class Usuarios_model extends CI_Model
         return $this->db->delete("usuarios");
     }
 
-    public function logear($email, $password)
+    public function logear($username, $password)
     {
-        $this->db->where('email', $email);
+        $this->db->where('username', $username);
         $this->db->where('password', $password);
         $resultados = $this->db->get("usuarios");
         if ($resultados->num_rows() > 0) {
