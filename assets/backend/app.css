@@ -1,0 +1,30 @@
+.main-header .logo {
+	font-size: 18px;
+}
+
+.navbar .nav li a#logout img {
+    width: 20px;
+    height: 20px;
+}
+
+.navbar .nav li.info-user {
+    color: #fff;
+    padding: 15px 10px 10px 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.title-dashboad{
+	color: #666;
+	font-weight: bold;
+}
+
+.tabla-cuadro-mensual>tbody>tr>td, .tabla-cuadro-mensual>tbody>tr>th, .tabla-cuadro-mensual>tfoot>tr>td, .tabla-cuadro-mensual>tfoot>tr>th, .tabla-cuadro-mensual>thead>tr>td, .tabla-cuadro-mensual>thead>tr>th{
+	padding: 3px;
+}
+
+.tabla-prestamos-realizados>thead>tr>th{
+    font-size: 10px;
+    padding: 5px 3px;
+
+}
