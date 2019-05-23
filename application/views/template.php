@@ -34,16 +34,19 @@
 		<!-- Logo -->
 		<a href="<?php echo base_url(); ?>dashboard" class="logo">
 			<!-- mini logo for sidebar mini 50x50 pixels -->
-			<span class="logo-mini"><b>SGB</b></span>
+			<span class="logo-mini"><b>CT</b></span>
 			<!-- logo for regular state and mobile devices -->
-			<span class="logo-lg"><b>Sistema Bibliotecario</b></span>
+			<span class="logo-lg"><b>Control Estudiantil</b></span>
 		</a>
 		<!-- Header Navbar: style can be found in header.less -->
 		<nav class="navbar navbar-static-top">
 			<!-- Sidebar toggle button-->
-			<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-				<span class="sr-only">Toggle navigation</span>
-			</a>
+			<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
 
 			<div class="navbar-custom-menu">
 				<ul class="nav navbar-nav">
@@ -73,13 +76,16 @@
                     <a href="<?php echo base_url();?>principal"><i class="fa fa-home"></i> <span>Inicio</span></a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url();?>especialidades"><i class="fa fa-home"></i> <span>Especialidades</span></a>
+                    <a href="<?php echo base_url();?>especialidades"><i class="fa fa-sitemap"></i> <span>Especialidades</span></a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url();?>modulos"><i class="fa fa-home"></i> <span>Modulos</span></a>
+                    <a href="<?php echo base_url();?>modulos"><i class="fa fa-cogs"></i> <span>Modulos</span></a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url();?>estudiantes"><i class="fa fa-home"></i> <span>Estudiantes</span></a>
+                    <a href="<?php echo base_url();?>estudiantes"><i class="fa fa-user"></i> <span>Estudiantes</span></a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url();?>usuarios"><i class="fa fa-users"></i> <span>Usuarios</span></a>
                 </li>
 		    </ul>
 		</section>
@@ -118,6 +124,7 @@
 <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
+
 <script>
 	var base_url = "<?php echo base_url();?>";
 </script>

@@ -149,7 +149,7 @@ class Estudiantes extends CI_Controller {
                 }
                 
 
-            	$this->session->set_flashdata("success","La informacion de la Especialidad fue actualizada correctamente");
+            	$this->session->set_flashdata("success","La informacion del Estudiante fue actualizada correctamente");
                 redirect(base_url() . "estudiantes");
             } else {
                 //$this->session->set_flashdata("error","No se pudo registrar al usuario");

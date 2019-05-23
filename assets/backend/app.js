@@ -17,6 +17,7 @@ $(document).ready(function(){
         select:function(event, ui){
         	console.log(ui.item);
             //data = ui.item.id + "*"+ ui.item.codigo+ "*"+ ui.item.label+ "*"+ ui.item.precio+ "*"+ ui.item.stock;
+            $("#infoEstudiante").show();
             $("#nombres").text(ui.item.nombres);
             $("#apellidos").text(ui.item.apellidos);
             $("#dni").text(ui.item.dni);
@@ -24,9 +25,15 @@ $(document).ready(function(){
             $("#especialidad").text(ui.item.especialidad);
             html = '';
             $.each(ui.item.modulos, function(key, value){
+            	dataEstudianteModulo = value.estudiante_id +"*"+ value.modulo_id;
             	html += '<tr>';
             	html += '<td>'+value.nombre+'</td>';
-            	html += '<td></td>';
+            	if (!value.practica_realizada) {
+            		practica = '<input type="checkbox" class="minimal confirmar_practica" value="'+dataEstudianteModulo+'">';
+            	}else{
+            		practica = 'SI'
+            	}
+            	html += '<td>'+practica+'</td>';
             	html += '<td></td>';
             	html += '<td></td>';
             	html += '<td></td>';

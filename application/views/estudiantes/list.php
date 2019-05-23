@@ -47,7 +47,7 @@
                                     <td><?php echo $estudiante->nombres; ?></td>
                                     <td><?php echo $estudiante->apellidos; ?></td>
                                     <td><?php echo $estudiante->dni; ?></td>
-                                    <td><?php echo $estudiante->semestre; ?></td>
+                                    <td><?php echo getNumeroRomano($estudiante->semestre); ?></td>
                                     <td><?php echo getEspecialidad($estudiante->especialidad_id)->nombre; ?></td>
                                     <td>
                                         <a href="<?php echo base_url(); ?>estudiantes/edit/<?php echo $estudiante->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>

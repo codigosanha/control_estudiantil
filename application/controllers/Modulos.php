@@ -57,7 +57,7 @@ class Modulos extends CI_Controller {
             );
 
             if ($this->Backend_model->insert('modulos',$dataModulo)) {
-            	$this->session->set_flashdata("success","La Especialidad fue registrado exitosamente");
+            	$this->session->set_flashdata("success","El Modulo fue registrado exitosamente");
                 redirect(base_url() . "modulos");
             } else {
                 //$this->session->set_flashdata("error","No se pudo registrar al usuario");
@@ -106,7 +106,7 @@ class Modulos extends CI_Controller {
             );
 
             if ($this->Backend_model->update('modulos',"id=$idModulo",$dataModulo)) {
-            	$this->session->set_flashdata("success","La informacion de la Especialidad fue actualizada correctamente");
+            	$this->session->set_flashdata("success","La informacion del Modulo fue actualizada correctamente");
                 redirect(base_url() . "modulos");
             } else {
                 //$this->session->set_flashdata("error","No se pudo registrar al usuario");

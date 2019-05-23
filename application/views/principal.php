@@ -23,7 +23,7 @@
 			<hr>
 			<div class="row" >
 				<div class="col-md-12">
-					<div style="background: #d2d6de;">
+					<div style="background: #d2d6de; display: none;" id="infoEstudiante">
 						<br>
 						<p class="text-center"><strong>INFORMACION DEL ESTUDIANTE</strong></p>
 						<table class="table table-bordered">
