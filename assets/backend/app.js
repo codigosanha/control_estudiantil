@@ -1,6 +1,43 @@
 $(document).ready(function(){
 	$('.sidebar-menu').tree();
 
+	$("#search-estudiante").autocomplete({
+        source:function(request, response){
+            $.ajax({
+                url: base_url+"estudiantes/getInfoEstudiante",
+                type: "POST",
+                dataType:"json",
+                data:{ valor: request.term},
+                success:function(data){
+                    response(data);
+                }
+            });
+        },
+        minLength:2,
+        select:function(event, ui){
+        	console.log(ui.item);
+            //data = ui.item.id + "*"+ ui.item.codigo+ "*"+ ui.item.label+ "*"+ ui.item.precio+ "*"+ ui.item.stock;
+            $("#nombres").text(ui.item.nombres);
+            $("#apellidos").text(ui.item.apellidos);
+            $("#dni").text(ui.item.dni);
+            $("#semestre").text(ui.item.semestre);
+            $("#especialidad").text(ui.item.especialidad);
+            html = '';
+            $.each(ui.item.modulos, function(key, value){
+            	html += '<tr>';
+            	html += '<td>'+value.nombre+'</td>';
+            	html += '<td></td>';
+            	html += '<td></td>';
+            	html += '<td></td>';
+            	html += '<td></td>';
+            	html += '<td></td>';
+            	html += '</tr>';
+            });
+
+            $("#tbmodulos tbody").html(html);
+        },
+    });
+
 	$(document).on("change", "#fecprestamo", function(){
 		fecha = $(this).val();
 		

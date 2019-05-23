@@ -8,6 +8,7 @@
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.6 -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/jquery-ui/jquery-ui.css">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 	<!-- Ionicons -->
@@ -69,80 +70,17 @@
 			<ul class="sidebar-menu">
 				<li class="header">MENU DE NAVEGACION</li>
 				<li>
-                    <a href="<?php echo base_url();?>dashboard"><i class="fa fa-home"></i> <span>Inicio</span></a>
+                    <a href="<?php echo base_url();?>principal"><i class="fa fa-home"></i> <span>Inicio</span></a>
                 </li>
-				<li class="<?php echo $this->uri->segment(2) === "prestamos" ? 'active' : '' ?> treeview">
-		          	<a href="#">
-		            	<i class="fa fa-share-alt" aria-hidden="true"></i>
-		            	<span>Libros</span>
-		            	<span class="pull-right-container">
-		              		<i class="fa fa-angle-left pull-right"></i>
-		            	</span>
-		          	</a>
-		          	<ul class="treeview-menu">
-		            	<li class="<?php echo $this->uri->segment(3) === "add" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>libros/add"><i class="fa fa-circle-o"></i> Registrar Libro</a></li>
-		            	<li class="<?php echo $this->uri->segment(3) === "pending" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>libros"><i class="fa fa-circle-o"></i> Catalogo de Libros</a></li>
-		            	<li class="<?php echo $this->uri->segment(3) === "pending" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>categorias"><i class="fa fa-circle-o"></i> Categorias</a></li>
-		          	</ul>
-		        </li>
-		        <li class="<?php echo $this->uri->segment(2) === "prestamos" ? 'active' : '' ?> treeview">
-		          	<a href="#">
-		            	<i class="fa fa-share-alt" aria-hidden="true"></i>
-		            	<span>Lectores</span>
-		            	<span class="pull-right-container">
-		              		<i class="fa fa-angle-left pull-right"></i>
-		            	</span>
-		          	</a>
-		          	<ul class="treeview-menu">
-		            	<li class="<?php echo $this->uri->segment(3) === "add" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>lectores/add"><i class="fa fa-circle-o"></i> Registrar Lector</a></li>
-		            	<li class="<?php echo $this->uri->segment(3) === "pending" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>lectores"><i class="fa fa-circle-o"></i> Registro de Lectores</a></li>
-		          	</ul>
-		        </li>
-		        <li class="<?php echo $this->uri->segment(2) === "prestamos" ? 'active' : '' ?> treeview">
-		          	<a href="#">
-		            	<i class="fa fa-share-alt" aria-hidden="true"></i>
-		            	<span>Prestamos</span>
-		            	<span class="pull-right-container">
-		              		<i class="fa fa-angle-left pull-right"></i>
-		            	</span>
-		          	</a>
-		          	<ul class="treeview-menu">
-		            	<li class="<?php echo $this->uri->segment(3) === "add" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>prestamos/add"><i class="fa fa-circle-o"></i> Registrar Prestamo</a></li>
-		            	<li class="<?php echo $this->uri->segment(3) === "pendientes" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>prestamos/pendientes"><i class="fa fa-circle-o"></i> Devoluciones Pendientes</a></li>
-		            	<li class="<?php echo $this->uri->segment(3) === "all" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>prestamos"><i class="fa fa-circle-o"></i> Registro de Prestamos</a></li>
-		            	<li class="<?php echo $this->uri->segment(3) === "all" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>prestamos/renovaciones"><i class="fa fa-circle-o"></i> Registro de Renovaciones</a></li>
-		          	</ul>
-		        </li>
-				<li class="<?php echo $this->uri->segment(2) === "prestamos" ? 'active' : '' ?> treeview">
-		          	<a href="#">
-		            	<i class="fa fa-share-alt" aria-hidden="true"></i>
-		            	<span>Reportes</span>
-		            	<span class="pull-right-container">
-		              		<i class="fa fa-angle-left pull-right"></i>
-		            	</span>
-		          	</a>
-		          	<ul class="treeview-menu">
-		            	<li class="<?php echo $this->uri->segment(3) === "add" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>reportes/cuadro_anual"><i class="fa fa-circle-o"></i> Cuadro Anual de Prestamos</a></li>
-		            	<li class="<?php echo $this->uri->segment(3) === "pending" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>reportes/cuadro_mensual"><i class="fa fa-circle-o"></i> Cuadro Mensual de Prestamos</a></li>
-		            	<li class="<?php echo $this->uri->segment(3) === "pending" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>reportes/prestamos_realizados"><i class="fa fa-circle-o"></i> Prestamos Realizados</a></li>
-		            	<li class="<?php echo $this->uri->segment(3) === "pending" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>reportes/total_libros"><i class="fa fa-circle-o"></i> Total de Libros</a></li>
-		          	</ul>
-		        </li>
-				<li class="<?php echo $this->uri->segment(2) === "prestamos" ? 'active' : '' ?> treeview">
-		          	<a href="#">
-		            	<i class="fa fa-share-alt" aria-hidden="true"></i>
-		            	<span>Configuraciones Avanzadas</span>
-		            	<span class="pull-right-container">
-		              		<i class="fa fa-angle-left pull-right"></i>
-		            	</span>
-		          	</a>
-		          	<ul class="treeview-menu">
-		            	<li class="<?php echo $this->uri->segment(3) === "add" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>usuarios/add"><i class="fa fa-circle-o"></i> Registrar Usuario</a></li>
-		            	<li class="<?php echo $this->uri->segment(3) === "pending" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>usuarios"><i class="fa fa-circle-o"></i> Registro de Usuarios</a></li>
-		            	<li class="<?php echo $this->uri->segment(3) === "pending" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>tipodocumentos"><i class="fa fa-circle-o"></i> Tipo de Documentos</a></li>
-		            	<li class="<?php echo $this->uri->segment(3) === "pending" ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>tipolectores"><i class="fa fa-circle-o"></i> Tipo de Lectores</a></li>
-		          	</ul>
-		        </li>
+                <li>
+                    <a href="<?php echo base_url();?>especialidades"><i class="fa fa-home"></i> <span>Especialidades</span></a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url();?>modulos"><i class="fa fa-home"></i> <span>Modulos</span></a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url();?>estudiantes"><i class="fa fa-home"></i> <span>Estudiantes</span></a>
+                </li>
 		    </ul>
 		</section>
 		<!-- /.sidebar -->
@@ -169,7 +107,9 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->
-<script src="<?php echo base_url(); ?>assets/jquery/jquery-2.2.3.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/jquery/jquery.min.js"></script>
+
+<script src="<?php echo base_url();?>assets/jquery-ui/jquery-ui.js"></script>
 
 <!-- Bootstrap 3.3.6 -->
 <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>

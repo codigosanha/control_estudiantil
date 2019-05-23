@@ -11,7 +11,7 @@ class Auth extends CI_Controller {
 	public function login()
 	{
         if ($this->session->userdata('login')) {
-            redirect(base_url().'dashboard');
+            redirect(base_url().'principal');
         }
 		$this->load->view('auth/login');
 	}

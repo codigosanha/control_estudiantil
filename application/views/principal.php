@@ -13,14 +13,60 @@
 		</div>
 		<div class="box-body">
 			<div class="row">
+				<div class="col-md-6 col-md-offset-3 col-xs-12">
+					<h2 class="text-center">Buscar información del estudiante</h2>
+					<div class="form-group">
+						<input type="text" id="search-estudiante" name="search-estudiante" class="form-control" placeholder="Introduzca algo...">
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row" >
 				<div class="col-md-12">
-					<h2 class="text-center title-dashboad" >BIENVENIDO AL SISTEMA DE BIBLIOTECA</h2>
-					<p class="text-center">Mediante este video se explica como se debe utilizar el sistema biblioteca</p>
-					<video width="100%" height="480" controls>
-					  	<source src="<?php echo base_url()?>assets/videos/video2.mp4" type="video/mp4">
-					  
-					  	Your browser does not support the video tag.
-					</video>
+					<div style="background: #d2d6de;">
+						<br>
+						<p class="text-center"><strong>INFORMACION DEL ESTUDIANTE</strong></p>
+						<table class="table table-bordered">
+							<tbody>
+								<tr>
+									<th>NOMBRES:</th>
+									<td id="nombres"></td>
+								</tr>
+								<tr>
+									<th>APELLIDOS:</th>
+									<td id="apellidos"></td>
+								</tr>
+								<tr>
+									<th>DNI:</th>
+									<td id="dni"></td>
+								</tr>
+								<tr>
+									<th>SEMESTRE:</th>
+									<td id="semestre"></td>
+								</tr>
+								<tr>
+									<th>ESPECIALIDAD:</th>
+									<td id="especialidad"></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<p class="text-center"><strong>INFORMACION DE MODULOS</strong></p>
+						<table class="table table-bordered" id="tbmodulos">
+							<thead>
+								<tr>
+									<th>MODULO</th>
+									<th>PRACTICA</th>
+									<th>CERTIFICADO</th>
+									<th>FECHA DE EMISION</th>
+									<th>FECHA DE ENTREGA</th>
+									<th>N° DE REGISTRO</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
