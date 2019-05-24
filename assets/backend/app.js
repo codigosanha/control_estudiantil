@@ -1,6 +1,179 @@
 $(document).ready(function(){
 	$('.sidebar-menu').tree();
 
+	$(document).on("click", ".btn-establecer-numero", function(){
+		infoEstudianteModulo = $(this).val();
+		dataEstudianteModulo = infoEstudianteModulo.split("*");
+		nombres = $("#nombres").text();
+		apellidos = $("#apellidos").text();
+		modulo = $(this).closest("tr").children("td:eq(0)").text();
+		$(".modulo").text(modulo);
+		$(".estudiante").text(nombres+" "+apellidos);
+		$("input[name=estudiante_id]").val(dataEstudianteModulo[0]);
+		$("input[name=modulo_id]").val(dataEstudianteModulo[1]);
+	});
+	$("#form-numero-registro").submit(function(e){
+		e.preventDefault();
+		dataForm = $(this).serialize();
+		url = $(this).attr("action");
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: dataForm,
+			success: function(resp){
+				$("#modal-numero-registro").modal("hide");
+				if (resp != 0) {
+					cargarModulos(resp);
+				}else{
+					swal("Error", "No se pudo establecer el numero de registro", "error");
+				}
+			}
+		});
+	});
+
+	$("#form-cambio-estado").submit(function(e){
+		e.preventDefault();
+		dataForm = $(this).serialize();
+		url = $(this).attr("action");
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: dataForm,
+			success: function(resp){
+				$("#myModal").modal("hide");
+				if (resp != 0) {
+					cargarModulos(resp);
+				}else{
+					swal("Error", "No se pudo cambiar el estado del certificado", "error");
+				}
+			}
+		});
+	});
+
+	function cargarModulos(estudiante_id){
+
+		$.ajax({
+			url: base_url + "estudiantes/cargarModulos",
+			type: "POST",
+			data: {estudiante_id: estudiante_id},
+			dataType: "json",
+			success: function(data){
+				html = '';
+		        $.each(data, function(key, value){
+		        	dataEstudianteModulo = value.estudiante_id +"*"+ value.modulo_id;
+		        	html += '<tr id="mod'+value.modulo_id+'">';
+		        	html += '<td><input type="hidden" value="'+dataEstudianteModulo+'">'+value.nombre+'</td>';
+		        	if (!value.practica_realizada) {
+		        		practica = '<input type="checkbox" class="minimal confirmar_practica" value="'+dataEstudianteModulo+'">';
+		        	}else{
+		        		practica = 'SI'
+		        	}
+		        	html += '<td>'+practica+'</td>';
+		        	estado_certificado = '';
+		        	if (!value.estado_certificado) {
+		        		estado_certificado = '<span class="label label-danger">Pendiente</span><br>';
+		        		estado_certificado += '<a href="#myModal" data-toggle="modal" class="btn-change" data-href="0">Cambiar a Emitido</a>';
+		        	}else if(value.estado_certificado == 1){
+		        		estado_certificado = '<span class="label label-warning">Emitido</span><br>';
+		        		estado_certificado += '<a href="#myModal" data-toggle="modal" class="btn-change" data-href="'+value.estado_certificado+'">Cambiar a Entregado</a>';
+		        	}else {
+		        		estado_certificado = '<span class="label label-success">Entregado</span>';
+		        	}
+		        	html += '<td>'+estado_certificado+'</td>';
+		        	if (!value.fecha_emision) {
+		        		fecha_emision = '';
+		        	}else{
+		        		fecha_emision = value.fecha_emision;
+		        	}
+	            	html += '<td>'+fecha_emision+'</td>';
+		        	if (!value.fecha_entrega) {
+		        		fecha_entrega = '';
+		        	}else{
+		        		fecha_entrega = value.fecha_entrega;
+		        	}
+	            	html += '<td>'+fecha_entrega+'</td>';
+		        	if (!value.numero_registro) {
+		        		numero_registro = '<button type="button" class="btn btn-primary btn-establecer-numero" data-toggle="modal" data-target="#modal-numero-registro" value="'+dataEstudianteModulo+'">Establecer</button>';
+		        	}else{
+		        		numero_registro = value.numero_registro;
+		        	}
+	            	html += '<td>'+numero_registro+'</td>';
+		        	html += '</tr>';
+		        });
+
+		        $("#tbmodulos tbody").html(html);
+			}	
+		});
+		
+	}
+
+	$(document).on("click",".btn-change",function(){
+		estadoActual = $(this).attr("data-href");
+		nombres = $("#nombres").text();
+		apellidos = $("#apellidos").text();
+		modulo = $(this).closest("tr").children("td:eq(0)").text();
+		infoEstudianteModulo = $(this).closest("tr").children("td:eq(0)").find("input").val();
+		dataEstudianteModulo = infoEstudianteModulo.split("*");
+		$(".modulo").text(modulo);
+		$(".estudiante").text(nombres+" "+apellidos);
+		$("input[name=estudiante_id]").val(dataEstudianteModulo[0]);
+		$("input[name=modulo_id]").val(dataEstudianteModulo[1]);
+		if (estadoActual=="0") {
+			$(".estadoActual").text("Pendiente");
+			$(".nuevoEstado").text("Emitido");
+			$("#nuevoEstado").val(Number(estadoActual) + 1);
+		} else {
+			$(".estadoActual").text("Emitido");
+			$(".nuevoEstado").text("Entregado");
+			$("#nuevoEstado").val(Number(estadoActual) + 1);
+		} 
+	});
+
+	$(document).on("change", ".confirmar_practica", function(){
+		infoEstudianteModulo = $(this).val();
+		dataEstudianteModulo = infoEstudianteModulo.split("*");
+		$("#estudiante_id").val(dataEstudianteModulo[0]);
+		$("#modulo_id").val(dataEstudianteModulo[1]);
+		nombres = $("#nombres").text();
+		apellidos = $("#apellidos").text();
+		modulo = $(this).closest("tr").children("td:eq(0)").text();
+		$(".modulo").text(modulo);
+		$(".estudiante").text(nombres+" "+apellidos);
+		$("#modal-confirmar-practica").modal("show");
+	});
+
+	$(document).on("click",".btn-cancelar-practica", function(){
+		modulo = $("#modulo_id").val();
+		$("#mod"+modulo).children("td:eq(1)").find("input").prop("checked", false);
+	});
+
+	$("#form-confirmar-practica").submit(function(e){
+		e.preventDefault();
+		data = $(this).serialize();
+		url = $(this).attr("action");
+		$.ajax({
+			url: url,
+			type:"POST",
+			data: data,
+			success: function(resp){
+				$("#modal-confirmar-practica").modal("hide");
+				if (resp==1) {
+					
+					swal("Bien", "Se actualizo correctamente la informacion de la practica pre profesional","success");
+					modulo = $("#modulo_id").val();
+					$("tr#mod"+modulo).children("td:eq(1)").find("input").remove();
+					$("tr#mod"+modulo).children("td:eq(1)").text("SI");
+				} else {
+					swal("Error", "No se pudo actualizar la informacion de la practica","error");
+					modulo = $("#modulo_id").val();
+					$("tr#mod"+modulo).children("td:eq(1)").find("input").removeAttr("checked");
+				}
+				
+			}
+		});
+
+	});
+
 	$("#search-estudiante").autocomplete({
         source:function(request, response){
             $.ajax({
@@ -18,6 +191,7 @@ $(document).ready(function(){
         	console.log(ui.item);
             //data = ui.item.id + "*"+ ui.item.codigo+ "*"+ ui.item.label+ "*"+ ui.item.precio+ "*"+ ui.item.stock;
             $("#infoEstudiante").show();
+
             $("#nombres").text(ui.item.nombres);
             $("#apellidos").text(ui.item.apellidos);
             $("#dni").text(ui.item.dni);
@@ -26,8 +200,8 @@ $(document).ready(function(){
             html = '';
             $.each(ui.item.modulos, function(key, value){
             	dataEstudianteModulo = value.estudiante_id +"*"+ value.modulo_id;
-            	html += '<tr>';
-            	html += '<td>'+value.nombre+'</td>';
+            	html += '<tr id="mod'+value.modulo_id+'">';
+            	html += '<td><input type="hidden" value="'+dataEstudianteModulo+'">'+value.nombre+'</td>';
             	if (!value.practica_realizada) {
             		practica = '<input type="checkbox" class="minimal confirmar_practica" value="'+dataEstudianteModulo+'">';
             	}else{
@@ -39,15 +213,30 @@ $(document).ready(function(){
             		estado_certificado = '<span class="label label-danger">Pendiente</span><br>';
             		estado_certificado += '<a href="#myModal" data-toggle="modal" class="btn-change" data-href="0">Cambiar a Emitido</a>';
             	}else if(value.estado_certificado == 1){
-            		estado_certificado = '<span class="label label-warning">Emitido</span>';
+            		estado_certificado = '<span class="label label-warning">Emitido</span><br>';
             		estado_certificado += '<a href="#myModal" data-toggle="modal" class="btn-change" data-href="'+value.estado_certificado+'">Cambiar a Entregado</a>';
             	}else {
             		estado_certificado = '<span class="label label-success">Entregado</span>';
             	}
             	html += '<td>'+estado_certificado+'</td>';
-            	html += '<td></td>';
-            	html += '<td></td>';
-            	html += '<td></td>';
+            	if (!value.fecha_emision) {
+	        		fecha_emision = '';
+	        	}else{
+	        		fecha_emision = value.fecha_emision;
+	        	}
+            	html += '<td>'+fecha_emision+'</td>';
+            	if (!value.fecha_entrega) {
+	        		fecha_entrega = '';
+	        	}else{
+	        		fecha_entrega = value.fecha_entrega;
+	        	}
+            	html += '<td>'+fecha_entrega+'</td>';
+            	if (!value.numero_registro) {
+	        		numero_registro = '<button type="button" class="btn btn-primary btn-establecer-numero" data-toggle="modal" data-target="#modal-numero-registro" value="'+dataEstudianteModulo+'">Establecer</button>';
+	        	}else{
+	        		numero_registro = value.numero_registro;
+	        	}
+            	html += '<td>'+numero_registro+'</td>';
             	html += '</tr>';
             });
 
@@ -55,43 +244,7 @@ $(document).ready(function(){
         },
     });
 
-	$(document).on("change", "#fecprestamo", function(){
-		fecha = $(this).val();
-		
-		var date = new Date(fecha);
-		var fecha = sumarDias(date, 5);
 
-	   	d = fecha.getDate() + 1;
-        m = fecha.getMonth()+1; 
-        y = fecha.getFullYear();
-        var data ="";
-
-	    if(d < 10){
-	        d = "0"+d;
-	    };
-	    if(m < 10){
-	        m = "0"+m;
-	    };
-
-	    data = y+"-"+m+"-"+d;
-	    $("#fecdevolucion").val(data);
-	});
-
-	function sumarDias(fecha, dias){
-	  fecha.setDate(fecha.getDate() + dias);
-	  return fecha;
-	}
-
-	$("#ejemplares").keyup(function(event){
-    	valor = $(this).val();
-    	if (valor !='') {
-    		if (valor == 0) {
-	    		swal("Error","El valor de ejemplares no puede ser 0","error");
-	    		$(this).val("1");
-	    	}
-    	}
-    	
-    });
 
 	$("#nombres, #apellidos, #autor, #editorial, #titulo").keydown(function(event){
     	var key = event.which;
@@ -100,97 +253,11 @@ $(document).ready(function(){
 	    }
     });
 
-    $("#ediccion").keydown(function(event){
-    	var key = event.which;
-	    if((key < 65 || key > 105) && key !==8 && key !== 32){
-	       	return false;
-	    }
-    });
-
-    $("#distrito_provincia").keydown(function(event){
-    	var key = event.which;
-	    if((key < 65 || key > 90) && key !==8 && key !== 32 && key!==189){
-	       	return false;
-	    }
-    });
-
-	$("#checkChangePassword").on("change", function(){
-		$("#password").val(null);
-		if($(this).prop('checked')) {
-		    $(this).val("1");
-		    
-		    $("#password").removeAttr("disabled");
-		    $("#password").attr("required","required");
-
-		}else{
-			$(this).val("0");
-			$("#password").attr("disabled","disabled");
-			$("#password").removeAttr("required");
-		}
-	});
 	
 	$('#dni, #telefono').keypress(function (tecla) {
 	  if (tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
 
-	$(document).on("click",".btn-renovar", function(){
-		var infoPrestamo = $(this).val();
-		swal({
-		    title: "¿Estas seguro que deseas renovar el préstamo para 5 días más?",
-		    text: "Si estas seguro de hacerlo haga click en el boton Aceptar, caso contrario haga click en cancelar",
-		    type: "warning",
-	        showCancelButton: true,
-	        cancelButtonClass: "btn-danger",
-	        confirmButtonClass: "btn-success",
-	        confirmButtonText: "Aceptar",
-	        closeOnConfirm: true,
-		},
-		function(isConfirm){
-		   	if (isConfirm){
-		   		$.ajax({
-					url: base_url + "prestamos/renovar",
-					type:"POST",
-					data: {prestamo:infoPrestamo},
-					success: function(resp){
-						if (resp !="0") {
-							location.reload(true);
-						}
-						else{
-							alert("No se pudo renovar el prestamo");
-						}
-					}
-				});
-		    } 
-		});
-		
-	});
-
-	$(document).on("click",".btn-eliminar", function(e){
-		e.preventDefault();
-		url = $(this).attr("href");
-		swal({
-		    title: "¿Desear cerrar sesión?",
-		    text: "Si estas seguro de hacerlo haga click en el boton Aceptar, caso contrario haga click en cancelar",
-		    type: "warning",
-	        showCancelButton: true,
-	        cancelButtonClass: "btn-danger",
-	        confirmButtonClass: "btn-success",
-	        confirmButtonText: "Aceptar",
-	        closeOnConfirm: true,
-		},
-		function(isConfirm){
-		   	if (isConfirm){
-		   		$.ajax({
-					url: url,
-					type:"POST",
-					success: function(resp){
-						location.reload(true);
-					}
-				});
-		    } 
-		});
-		
-	});
 	$("#logout").on("click", function(e){
 		e.preventDefault();
 		swal({
@@ -209,77 +276,7 @@ $(document).ready(function(){
 		    } 
 		});
 	});
-	$("#datepicker").datepicker({
-	    format: "yyyy",
-	    viewMode: "years", 
-	    minViewMode: "years",
-	    startDate : '1900'
-	});
-	$("#datepicker1").datepicker({
-	    format: "mm-yyyy",
-	    viewMode: "months", 
-	    minViewMode: "months",
-	    language: 'es'
-	});
-
-	$("#tipo_documento_id").on("change", function(){
-		item = $("#tipo_documento_id option:selected").text().toLowerCase();
-		num_documento = $("#num_documento").val();
-	
-		if (item=='dni') {
-			$("#num_documento").val(num_documento.substr(0,8));
-		}
-	});
-	
-	$('input#num_documento').keypress(function (event) {
-		item = $("#tipo_documento_id option:selected").text().toLowerCase();
-		if (item=="dni") {
-			cantidad = 8;
-		} else{
-			cantidad = 10;
-		}
-      	if (event.which < 48 || event.which > 57 || this.value.length === Number(cantidad)) {
-        	return false;
-      	}
-    });
-	
-	$(document).on("click","#btn-comprobardni", function(){
-		num_documento = $("#num_documento").val();
-		if(num_documento==""){
-			alertify.error("No ha ingresado ningun numero de documento");
-		}
-		else{
-
-			$.ajax({
-			  	type: "POST",
-			  	url: base_url+"lectores/comprobardocumento",
-			  	data: { num_documento: num_documento }
-			}).done(function(msg) {
-			    if (msg === "nf") {
-			    	$("#nombres").val("");
-			    	$("input[name=idLector]").val(null);
-			    	alertify.error("El Lector no existe...haga clic boton Registrar para registrarlo");
-			    }
-			    else if (msg === "na") {
-			    	$("#nombres").val("");
-			    	$("input[name=idLector]").val(null);
-			    	alertify.error("El Lector esta registrado...pero no esta disponible");
-			    }
-			    else{
-			    	var result = JSON.parse(msg);
-			    	$("input[name=idLector]").val(result.id);
-			    	$("#nombres").val(result.nombres + " " +result.apellidos);
-			    }
-			});
-		}
-
-	});
-	$(document).on("click", ".btn-select",function(){
-    	codigo = $(this).closest("tr").find("td:eq(1)").text();
-    	idLibro = $(this).val();
-    	$("input[name=idLibro]").val(idLibro);
-    	$("#codigo").val(codigo);
-	});   
+  
 	$(document).on("click",".btn-eliminar-usuario",function(){
 		idusuario = $(this).val();
 		fila = $(this).closest("tr"); 

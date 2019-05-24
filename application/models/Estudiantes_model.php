@@ -20,4 +20,10 @@ class Estudiantes_model extends CI_Model {
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
+
+	public function updateEstudianteModulo($estudiante_id, $modulo_id, $data){
+		$this->db->where('estudiante_id', $estudiante_id);
+		$this->db->where('modulo_id', $modulo_id);
+		return $this->db->update("estudiantes_modulos",$data);
+	}
 }

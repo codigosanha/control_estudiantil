@@ -182,4 +182,65 @@ class Estudiantes extends CI_Controller {
         echo json_encode($data);
     }
 
+
+    public function confirmar_practica(){
+        $modulo_id = $this->input->post("modulo_id");
+        $estudiante_id = $this->input->post("estudiante_id");
+        $data = array('practica_realizada' => 1);
+        if($this->Estudiantes_model->updateEstudianteModulo($estudiante_id,$modulo_id,$data)){
+            echo "1";
+        }else{
+            echo "0";
+        }
+
+    }
+
+    public function cambioEstado(){
+        $modulo_id = $this->input->post("modulo_id");
+        $estudiante_id = $this->input->post("estudiante_id");
+        $nuevoEstado = $this->input->post("nuevoEstado");
+        $fecha = $this->input->post("fecha");
+        if ($nuevoEstado == 1) {
+            $data  = array(
+                'estado_certificado' => 1, 
+                'fecha_emision' => $fecha,
+            );
+        }else{
+            $data  = array(
+                'estado_certificado' => 2, 
+                'fecha_entrega' => $fecha,
+            );
+        }
+        if($this->Estudiantes_model->updateEstudianteModulo($estudiante_id,$modulo_id,$data)){
+            echo $estudiante_id;
+        }else{
+            echo "0";
+        }
+
+    }
+
+    public function cargarModulos(){
+        $estudiante_id = $this->input->post("estudiante_id");
+        $modulos = $this->Estudiantes_model->getModulos($estudiante_id);
+        echo json_encode($modulos);
+    }
+
+    public function numero_registro(){
+        $modulo_id = $this->input->post("modulo_id");
+        $estudiante_id = $this->input->post("estudiante_id");
+        $numero_registro = $this->input->post("numero_registro");
+
+       
+            $data  = array(
+                'numero_registro' => $numero_registro, 
+            );
+        
+        if($this->Estudiantes_model->updateEstudianteModulo($estudiante_id,$modulo_id,$data)){
+            echo $estudiante_id;
+        }else{
+            echo "0";
+        }
+
+    }
+
 }
