@@ -20,13 +20,12 @@
 					</div>
 				</div>
 			</div>
-			<hr>
 			<div class="row" >
 				<div class="col-md-12">
-					<div style="background: #d2d6de; display: none;" id="infoEstudiante">
+					<div style="display: none;" id="infoEstudiante">
 						<br>
 						<p class="text-center"><strong>INFORMACION DEL ESTUDIANTE</strong></p>
-						<table class="table table-bordered">
+						<table class="table table-bordered" style="background: #d2d6de;">
 							<tbody>
 								<tr>
 									<th>NOMBRES:</th>
@@ -51,9 +50,13 @@
 							</tbody>
 						</table>
 
-						<p class="text-center"><strong>INFORMACION DE MODULOS</strong></p>
-						<table class="table table-bordered" id="tbmodulos">
+						
+						<table class="table table-bordered" id="tbmodulos" style="background: #d2d6de;">
 							<thead>
+								<tr>
+									<th colspan="2" class="text-center">INFORMACION DE MODULOS</th>
+									<th colspan="4" class="text-center">INFORMACION DEL CERTIFICADO</th>
+								</tr>
 								<tr>
 									<th>MODULO</th>
 									<th>PRACTICA</th>
@@ -74,4 +77,33 @@
 	</div>
 	  <!-- /.box -->
 </section>
- 
+ <div class="modal modal-info fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">CAMBIO DE ESTADO</h4>
+            </div>
+            <form action="<?php echo base_url(); ?>backend/categorias/changeImage" method="POST" enctype="multipart/form-data">
+	          	<div class="modal-body">
+	                <div class="row">
+	                    <div class="col-sm-4">
+	                        <h4>Portada Actual</h4>
+	                        <img src="" alt="Portada Actual" class="image-actual img-responsive">
+	                    </div>
+	                    <div class="col-sm-8">
+	                        <h4>Cambiar Imagen de Portada</h4>
+	                    </div>
+	                </div>
+	          	</div>
+	          	<div class="modal-footer">
+	            	<button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cerrar</button>
+	            	<button type="submit" class="btn btn-warning">Guardar</button>
+	          	</div>
+          	</form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+      <!-- /.modal-dialog -->
+</div>

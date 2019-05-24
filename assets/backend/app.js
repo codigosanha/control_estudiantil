@@ -34,7 +34,17 @@ $(document).ready(function(){
             		practica = 'SI'
             	}
             	html += '<td>'+practica+'</td>';
-            	html += '<td></td>';
+            	estado_certificado = '';
+            	if (!value.estado_certificado) {
+            		estado_certificado = '<span class="label label-danger">Pendiente</span><br>';
+            		estado_certificado += '<a href="#myModal" data-toggle="modal" class="btn-change" data-href="0">Cambiar a Emitido</a>';
+            	}else if(value.estado_certificado == 1){
+            		estado_certificado = '<span class="label label-warning">Emitido</span>';
+            		estado_certificado += '<a href="#myModal" data-toggle="modal" class="btn-change" data-href="'+value.estado_certificado+'">Cambiar a Entregado</a>';
+            	}else {
+            		estado_certificado = '<span class="label label-success">Entregado</span>';
+            	}
+            	html += '<td>'+estado_certificado+'</td>';
             	html += '<td></td>';
             	html += '<td></td>';
             	html += '<td></td>';
