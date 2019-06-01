@@ -25,6 +25,7 @@
 					<div style="display: none;" id="infoEstudiante">
 						<br>
 						<p class="text-center"><strong>INFORMACION DEL ESTUDIANTE</strong></p>
+						<input type="hidden" id="estudiante">
 						<table class="table table-bordered" style="background: #d2d6de;">
 							<tbody>
 								<tr>
@@ -135,15 +136,15 @@
 	          	<div class="modal-body">
 	                <div class="row">
 	                    <div class="col-sm-12">
-	                        Realmente esta seguro de confirmar la realización de la practica pre profesionales por parte del estudiante <b class="estudiante"></b> en el modulo de <b class="modulo"></b>, de ser así haga click en el boton confirmar caso contrario en cancel.
+	                        Realmente esta seguro de confirmar la realización de la practica pre profesionales por parte del estudiante <b class="estudiante"></b> en el modulo de <b class="modulo"></b>, de ser así haga click en el boton Confirmar caso contrario en Cancelar.
 	                    </div>
 	                    <input type="hidden" name="estudiante_id" id="estudiante_id">
 	                    <input type="hidden" name="modulo_id" id="modulo_id">
 	                </div>
 	          	</div>
 	          	<div class="modal-footer">
-	            	<button type="button" class="btn btn-danger btn-cancelar-practica pull-left" data-dismiss="modal">Cerrar</button>
-	            	<button type="submit" class="btn btn-success btn-confirmar">Guardar</button>
+	            	<button type="button" class="btn btn-danger btn-cancelar-practica pull-left" data-dismiss="modal">Cancelar</button>
+	            	<button type="submit" class="btn btn-success btn-confirmar">Confirmar</button>
 	          	</div>
           	</form>
         </div>
@@ -152,31 +153,39 @@
       <!-- /.modal-dialog -->
 </div>
 
-<div class="modal modal-default fade" id="modal-numero-registro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal modal-default fade" id="modal-certificado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">ESTABLECER NUMERO DE REGISTRO DEL CERTIFICADO</h4>
+                <h4 class="modal-title">Actualizar información del Certificado</h4>
             </div>
-            <form action="<?php echo base_url(); ?>estudiantes/numero_registro" method="POST" id="form-numero-registro">
+            <form action="<?php echo base_url(); ?>estudiantes/updateCertificado" method="POST" id="form-update-certificado">
 	          	<div class="modal-body">
-	                
-	                    <div class="form-group">
-		                	<label for="">Estudiante:</label>
-		                	<p class="estudiante"></p>
-		                </div>
-		                <div class="form-group">
-		                	<label for="">Modulo</label>
-		                	<p class="modulo"></p>
-		                </div>
-		                <div class="form-group">
-		                	<label for="">Numero de Registro</label>
-		                	<input type="text" name="numero_registro" class="form-control">
-		                </div>
-	                    <input type="hidden" name="estudiante_id">
-	                    <input type="hidden" name="modulo_id">
+	                <input type="hidden" name="idModEst" id="idModEst">
+                    <div class="form-group">
+	                	<label for="">Estudiante:</label>
+	                	<p class="estudiante"></p>
+	                </div>
+	                <div class="form-group">
+	                	<label for="">Modulo</label>
+	                	<p class="modulo"></p>
+	                </div>
+	                <div class="form-group">
+	                	<label for="">Fecha de Emisión</label>
+	                	<input type="text" name="fecha_emision" class="form-control">
+	                </div>
+	                <div class="form-group">
+	                	<label for="">Fecha de Entrega</label>
+	                	<input type="text" name="fecha_entrega" class="form-control">
+	                </div>
+	                <div class="form-group">
+	                	<label for="">Numero de Registro</label>
+	                	<input type="text" name="numero_registro" class="form-control">
+	                </div>
+                    <input type="hidden" name="estudiante_id">
+                    <input type="hidden" name="modulo_id">
 	                
 	          	</div>
 	          	<div class="modal-footer">

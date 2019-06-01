@@ -191,7 +191,7 @@ $(document).ready(function(){
         	console.log(ui.item);
             //data = ui.item.id + "*"+ ui.item.codigo+ "*"+ ui.item.label+ "*"+ ui.item.precio+ "*"+ ui.item.stock;
             $("#infoEstudiante").show();
-
+            $("#estudiante").val(ui.item.id);
             $("#nombres").text(ui.item.nombres);
             $("#apellidos").text(ui.item.apellidos);
             $("#dni").text(ui.item.dni);
@@ -208,7 +208,7 @@ $(document).ready(function(){
             		practica = 'SI'
             	}
             	html += '<td>'+practica+'</td>';
-            	html += '<td>'+estado_certificado+'</td>';
+        
             	if (!value.fecha_emision) {
 	        		fecha_emision = '';
 	        	}else{
@@ -222,19 +222,51 @@ $(document).ready(function(){
 	        	}
             	html += '<td>'+fecha_entrega+'</td>';
             	if (!value.numero_registro) {
-	        		numero_registro = '<button type="button" class="btn btn-primary btn-establecer-numero" data-toggle="modal" data-target="#modal-numero-registro" value="'+dataEstudianteModulo+'">Establecer</button>';
+            		numero_registro = '';
 	        	}else{
 	        		numero_registro = value.numero_registro;
 	        	}
             	html += '<td>'+numero_registro+'</td>';
-            	html += '<button>';
+            	html += '<td>';
+            	html += '<button type="button" class="btn btn-warning btn-edit-certificado" value="'+value.id+'" data-toggle="modal" data-target="#modal-certificado">';
             	html += '<span class="fa fa-pencil"></span>'
-            	html += </button>';
+            	html += '</button></td>';
             	html += '</tr>';
             });
 
             $("#tbmodulos tbody").html(html);
         },
+    });
+
+    $(document).on("click", ".btn-edit-certificado", function(){
+    	idModEst = $(this).val();
+    	nombres = $("#nombres").text();
+		apellidos = $("#apellidos").text();
+		modulo = $(this).closest("tr").children("td:eq(0)").text();
+		$(".modulo").text(modulo);
+		$(".estudiante").text(nombres+" "+apellidos);
+		$("#idModEst").val(idModEst);
+    });
+
+    $("#form-update-certificado").submit(function(e){
+    	e.preventDefault();
+    	dataForm = $(this).serialize();
+    	url: $(this).attr("action");
+    	$.ajax({
+    		url: url,
+    		type: "POST",
+    		data: dataForm,
+    		success: function(resp){
+    			if (resp==1) {
+    				$("#modal-certificado").modal("hide");
+    				swal("Bien Hecho!","Se actualizo la informacion del certificado","success");
+    				cargarModulos($("#estudiante").val());
+    			}else{
+    				swal("Error","No se pudo actualizar la informacion del certificado","error");
+
+    			}
+    		}
+    	});
     });
 
 

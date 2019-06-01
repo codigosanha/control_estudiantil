@@ -19,15 +19,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 		.container{
 			background: #FFF;
-			height: 100%;
-    		min-height: 100%;
+			height: auto;
+			min-height: 100%;
+		}
+		.info-estudiante{
+
 		}
 	</style>
 </head>
 <body>
 
 <div class="container">
-	<div class="info-estudiante">
+	<div class="info-estudiante" >
 		<h2 class="text-center">SISTEMA DE INFORMACION ESTUDIANTIL</h2>
 		<hr>
 		<div class="row">
