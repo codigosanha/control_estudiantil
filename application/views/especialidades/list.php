@@ -2,7 +2,7 @@
       <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Lista de Especialidades</h3>
+            <h3 class="box-title">Lista de Programa de Estudios</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -14,7 +14,7 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-12 text-right">
-                    <a href="<?php echo base_url(); ?>especialidades/add" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Nueva Especialidad</a>
+                    <a href="<?php echo base_url(); ?>programa_estudios/add" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Programa de Estudio</a>
                 </div>
             </div>
             <!-- /.row -->
@@ -42,7 +42,7 @@
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo $especialidad->nombre; ?></td>
                                     <td>
-                                        <a href="<?php echo base_url(); ?>especialidades/edit/<?php echo $especialidad->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a href="<?php echo base_url(); ?>programa_estudios/edit/<?php echo $especialidad->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
                                     </td>
                                 </tr>
                                 <?php $i++;?>

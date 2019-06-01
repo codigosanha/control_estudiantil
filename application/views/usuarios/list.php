@@ -33,8 +33,7 @@
                                 <th>Nombres</th>
                                 <th>Apellidos</th>
                                 <th>DNI</th>
-                                <th>Email</th>
-                                <th>Telefono</th>
+                                <th>Username</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -47,8 +46,7 @@
                                     <td><?php echo $usuario->nombres; ?></td>
                                     <td><?php echo $usuario->apellidos; ?></td>
                                     <td><?php echo $usuario->dni; ?></td>
-                                    <td><?php echo $usuario->email; ?></td>
-                                    <td><?php echo $usuario->telefono; ?></td>
+                                    <td><?php echo $usuario->username; ?></td>
                                     <td>
                                         <a href="<?php echo base_url(); ?>usuarios/edit/<?php echo $usuario->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
                                         <button class="btn btn-danger btn-eliminar-usuario" value="<?php echo $usuario->id?>">

@@ -2,7 +2,7 @@
       <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Editar Especialidad</h3>
+            <h3 class="box-title">Editar Programa de Estudios</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -16,7 +16,7 @@
                 swal("Exito", "<?php echo $this->session->flashdata("success") ;?>", "success");
             </script>
         <?php endif ?>
-        <?php echo form_open('especialidades/update', "enctype=multipart/form-data"); ?>
+        <?php echo form_open('programa_estudios/update', "enctype=multipart/form-data"); ?>
         <input type="hidden" name="idEspecialidad" value="<?php echo $especialidad->id?>">
         <div class="box-body">
             <div class="row">
@@ -35,7 +35,7 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
-                        <a href="<?php echo base_url(); ?>especialidades" class="btn btn-danger"><i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</a>
+                        <a href="<?php echo base_url(); ?>programa_estudios" class="btn btn-danger"><i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</a>
                     </div>
                 </div>
             </div>

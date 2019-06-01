@@ -31,7 +31,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
-                                <th>Especialidad</th>
+                                <th>Programa de Estudio</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>

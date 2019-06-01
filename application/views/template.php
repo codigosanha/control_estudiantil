@@ -76,7 +76,7 @@
                     <a href="<?php echo base_url();?>principal"><i class="fa fa-home"></i> <span>Inicio</span></a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url();?>especialidades"><i class="fa fa-sitemap"></i> <span>Especialidades</span></a>
+                    <a href="<?php echo base_url();?>programa_estudios"><i class="fa fa-sitemap"></i> <span>Programa de Estudios</span></a>
                 </li>
                 <li>
                     <a href="<?php echo base_url();?>modulos"><i class="fa fa-cogs"></i> <span>Modulos</span></a>

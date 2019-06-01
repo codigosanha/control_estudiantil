@@ -27,7 +27,7 @@
                         <?php echo form_error('nombre'); ?>
                     </div>
                     <div class="form-group">
-                        <label for="especialidad_id">Especialidad</label>
+                        <label for="especialidad_id">Programa de Estudio</label>
                         <select name="especialidad_id" id="especialidad_id" class="form-control" required="required">
                             <option value="">Seleccione...</option>
                             <?php foreach ($especialidades as $especialidad): ?>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Especialidades extends CI_Controller {
+class Programa_estudios extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
@@ -18,7 +18,7 @@ class Especialidades extends CI_Controller {
         );
 
         $contenido_exterior = array(
-            'title'     => 'Listado de Especialidades',
+            'title'     => 'Listado de Programas de Estudio',
             'contenido' => $this->load->view('especialidades/list', $contenido_interno, true),
         );
 
@@ -27,7 +27,7 @@ class Especialidades extends CI_Controller {
 
 	public function add(){
         $contenido_exterior = array(
-            'title'     => 'Agregar especialidad',
+            'title'     => 'Agregar Programa de Estudio',
             'contenido' => $this->load->view('especialidades/add', '', true),
         );
 
@@ -49,10 +49,10 @@ class Especialidades extends CI_Controller {
 
             if ($this->Backend_model->insert('especialidades',$dataEspecialidad)) {
             	$this->session->set_flashdata("success","La Especialidad fue registrado exitosamente");
-                redirect(base_url() . "especialidades");
+                redirect(base_url() . "programa_estudios");
             } else {
                 //$this->session->set_flashdata("error","No se pudo registrar al usuario");
-                redirect(base_url() . "especialidades/add");
+                redirect(base_url() . "programa_estudios/add");
             }
         }
 	}
@@ -65,7 +65,7 @@ class Especialidades extends CI_Controller {
         );
 
         $contenido_exterior = array(
-            'title'     => 'Editar Especialidad',
+            'title'     => 'Editar Programa de estudio',
             'contenido' => $this->load->view('especialidades/edit', $contenido_interno, true),
         );
 
@@ -96,10 +96,10 @@ class Especialidades extends CI_Controller {
 
             if ($this->Backend_model->update('especialidades',"id=$idEspecialidad",$dataEspecialidad)) {
             	$this->session->set_flashdata("success","La informacion de la Especialidad fue actualizada correctamente");
-                redirect(base_url() . "especialidades");
+                redirect(base_url() . "programa_estudios");
             } else {
                 //$this->session->set_flashdata("error","No se pudo registrar al usuario");
-                redirect(base_url() . "especialidades/edit/".$idEspecialidad);
+                redirect(base_url() . "programa_estudios/edit/".$idEspecialidad);
             }
         }
     }

@@ -26,15 +26,15 @@
 
 	<form action="<?php echo base_url() ?>auth/validar" method="post">
 	  <div class="form-group has-feedback">
-		<input type="text" class="form-control" placeholder="Username" name="username" id="username" required>
+		<input type="text" class="form-control input-lg" placeholder="Username" name="username" id="username" required autocomplete="off">
 		<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 	  </div>
 	  <div class="form-group has-feedback">
-		<input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
+		<input type="password" class="form-control input-lg" placeholder="Password" name="password" id="password" required autocomplete="off">
 		<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 	  </div>
 	  <div class="form-group">
-		<button type="submit" class="btn btn-primary btn-block btn-flat" id="btn-login">Acceder</button>
+		<button type="submit" class="btn btn-warning btn-lg btn-block btn-flat" id="btn-login">Acceder</button>
 	  </div>
 	  	
 

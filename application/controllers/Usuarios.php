@@ -37,13 +37,12 @@ class Usuarios extends CI_Controller {
 	public function store(){
 		$nombres      = $this->input->post("nombres");
         $apellidos        = $this->input->post("apellidos");
-        $email      = $this->input->post("email");
+        $username      = $this->input->post("username");
         $dni   = $this->input->post("dni");
-        $telefono       = $this->input->post("telefono");
         $password       = $this->input->post("password");
 
         $this->form_validation->set_rules('dni', 'Numero de Documento', 'trim|required|is_unique[usuarios.dni]', array('required' => 'Debes proporcionar un %s.', 'is_unique' => 'Este %s ya existe'));
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[usuarios.email]', array('required' => 'Debes proporcionar un %s.', 'is_unique' => 'Este %s ya existe'));
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[usuarios.username]', array('required' => 'Debes proporcionar un %s.', 'is_unique' => 'Este %s ya existe'));
         $this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
         if ($this->form_validation->run() == false) {
@@ -53,9 +52,8 @@ class Usuarios extends CI_Controller {
                 'nombres'    => $nombres,
                 'apellidos'        	=> $apellidos,
                 'dni'      			=> $dni,
-                'telefono'   			=> $telefono,
+                'username'   			=> $username,
                 'password' 			=> md5($password),
-                'email'   			=> $email,
             );
 
             if ($this->Usuarios_model->save($dataUsuario)) {
@@ -86,31 +84,20 @@ class Usuarios extends CI_Controller {
         $idUsuario  = $this->input->post("idUsuario");
     	$nombres    = $this->input->post("nombres");
         $apellidos  = $this->input->post("apellidos");
-        $email      = $this->input->post("email");
         $dni        = $this->input->post("dni");
-        $telefono   = $this->input->post("telefono");
-        $password   = $this->input->post("password");
-        $changePassword   = $this->input->post("checkChangePassword");
-
-
 
         $usuarioActual = $this->Usuarios_model->getUsuario($idUsuario);
-        $is_unique_email = '';
+        $is_unique_username = '';
         $is_unique_dni = '';
-        if ($usuarioActual->email != $email) {
-            $is_unique_email = '|is_unique[usuarios.email]';
+        if ($usuarioActual->username != $username) {
+            $is_unique_username = '|is_unique[usuarios.username]';
         }
         if ($usuarioActual->dni != $dni) {
             $is_unique_dni = '|is_unique[usuarios.dni]';
         }
 
-        if (empty($changePassword)) {
-            $password = $usuarioActual->password;
-        }else{
-            $password = md5($password);
-        }
         $this->form_validation->set_rules('dni', 'Numero de Documento', 'trim|required'.$is_unique_dni, array('required' => 'Debes proporcionar un %s.', 'is_unique' => 'Este %s ya existe'));
-        $this->form_validation->set_rules('email', 'Email', 'trim|required'.$is_unique_email, array('required' => 'Debes proporcionar un %s.', 'is_unique' => 'Este %s ya existe'));
+        $this->form_validation->set_rules('username', 'Username', 'trim|required'.$is_unique_username, array('required' => 'Debes proporcionar un %s.', 'is_unique' => 'Este %s ya existe'));
         $this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
         if ($this->form_validation->run() == false) {
@@ -121,9 +108,6 @@ class Usuarios extends CI_Controller {
                 'nombres'    => $nombres,
                 'apellidos'  => $apellidos,
                 'dni'        => $dni,
-                'telefono'   => $telefono,
-                'email'      => $email,
-                'password'   => $password
             );
 
             if ($this->Usuarios_model->update($idUsuario,$dataUsuario)) {

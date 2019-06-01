@@ -2,7 +2,7 @@
       <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Registrar Especialidad</h3>
+            <h3 class="box-title">Registrar Modulo</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -26,7 +26,7 @@
                         <?php echo form_error('nombre'); ?>
                     </div>
                     <div class="form-group">
-                        <label for="especialidad_id">Especialidad</label>
+                        <label for="especialidad_id">Programa de Estudio</label>
                         <select name="especialidad_id" id="especialidad_id" class="form-control" required="required">
                             <option value="">Seleccione...</option>
                             <?php foreach ($especialidades as $especialidad): ?>

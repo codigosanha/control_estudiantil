@@ -208,16 +208,6 @@ $(document).ready(function(){
             		practica = 'SI'
             	}
             	html += '<td>'+practica+'</td>';
-            	estado_certificado = '';
-            	if (!value.estado_certificado) {
-            		estado_certificado = '<span class="label label-danger">Pendiente</span><br>';
-            		estado_certificado += '<a href="#myModal" data-toggle="modal" class="btn-change" data-href="0">Cambiar a Emitido</a>';
-            	}else if(value.estado_certificado == 1){
-            		estado_certificado = '<span class="label label-warning">Emitido</span><br>';
-            		estado_certificado += '<a href="#myModal" data-toggle="modal" class="btn-change" data-href="'+value.estado_certificado+'">Cambiar a Entregado</a>';
-            	}else {
-            		estado_certificado = '<span class="label label-success">Entregado</span>';
-            	}
             	html += '<td>'+estado_certificado+'</td>';
             	if (!value.fecha_emision) {
 	        		fecha_emision = '';
@@ -237,6 +227,9 @@ $(document).ready(function(){
 	        		numero_registro = value.numero_registro;
 	        	}
             	html += '<td>'+numero_registro+'</td>';
+            	html += '<button>';
+            	html += '<span class="fa fa-pencil"></span>'
+            	html += </button>';
             	html += '</tr>';
             });
 

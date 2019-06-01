@@ -1,89 +1,164 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?><!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Instituto</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/jquery-ui/jquery-ui.css">
 
-	<style type="text/css">
-
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
-
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
-
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body {
-		margin: 0 15px 0 15px;
-	}
-
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-
-	#container {
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
-	}
+	<style>
+		html,body{
+			margin: 0;
+			background: #d2d6de;
+			height: 100%;
+			width: 100%;
+		}
+		.container{
+			background: #FFF;
+			height: 100%;
+    		min-height: 100%;
+		}
 	</style>
 </head>
 <body>
 
-<div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
+<div class="container">
+	<div class="info-estudiante">
+		<h2 class="text-center">SISTEMA DE INFORMACION ESTUDIANTIL</h2>
+		<hr>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 col-xs-12">
+				<h2 class="text-center">Buscar información del estudiante</h2>
+				<div class="form-group">
+					<input type="text" id="search-estudiante" name="search-estudiante" class="form-control" placeholder="Introduzca algo...">
+				</div>
+			</div>
+		</div>
+		<div class="row" >
+			<div class="col-md-12 col-xs-12">
+				<div style="display: none;" id="infoEstudiante">
+					<br>
+					<p class="text-center"><strong>INFORMACION DEL ESTUDIANTE</strong></p>
+					<table class="table table-bordered" style="background: #d2d6de;">
+						<tbody>
+							<tr>
+								<th>NOMBRES:</th>
+								<td id="nombres"></td>
+							</tr>
+							<tr>
+								<th>APELLIDOS:</th>
+								<td id="apellidos"></td>
+							</tr>
+							<tr>
+								<th>DNI:</th>
+								<td id="dni"></td>
+							</tr>
+							<tr>
+								<th>SEMESTRE:</th>
+								<td id="semestre"></td>
+							</tr>
+							<tr>
+								<th>PROGRAMA DE ESTUDIO:</th>
+								<td id="programa_estudio"></td>
+							</tr>
+						</tbody>
+					</table>
 
-	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
-
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
+					
+					<table class="table table-bordered" id="tbmodulos" style="background: #d2d6de;">
+						<thead>
+							<tr>
+								<th colspan="2" class="text-center">INFORMACION DE MODULOS</th>
+								<th colspan="4" class="text-center">INFORMACION DEL CERTIFICADO</th>
+							</tr>
+							<tr>
+								<th>MODULO</th>
+								<th>PRACTICA</th>
+								<th>FECHA DE EMISION</th>
+								<th>FECHA DE ENTREGA</th>
+								<th>N° DE REGISTRO</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
-
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
+
+<script src="<?php echo base_url(); ?>assets/jquery/jquery.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url();?>assets/jquery-ui/jquery-ui.js"></script>
+
+<script>
+	var base_url = "<?php echo base_url();?>";
+</script>
+<script>
+	$(document).ready(function(){
+		$("#search-estudiante").autocomplete({
+	        source:function(request, response){
+	            $.ajax({
+	                url: base_url+"estudiantes/getInfoEstudiante",
+	                type: "POST",
+	                dataType:"json",
+	                data:{ valor: request.term},
+	                success:function(data){
+	                    response(data);
+	                }
+	            });
+	        },
+	        minLength:2,
+	        select:function(event, ui){
+	        	console.log(ui.item);
+	            //data = ui.item.id + "*"+ ui.item.codigo+ "*"+ ui.item.label+ "*"+ ui.item.precio+ "*"+ ui.item.stock;
+	            $("#infoEstudiante").show();
+
+	            $("#nombres").text(ui.item.nombres);
+	            $("#apellidos").text(ui.item.apellidos);
+	            $("#dni").text(ui.item.dni);
+	            $("#semestre").text(ui.item.semestre);
+	            $("#programa_estudio").text(ui.item.especialidad);
+	            html = '';
+	            $.each(ui.item.modulos, function(key, value){
+	            	
+	            	html += '<tr>';
+	            	html += '<td>'+value.nombre+'</td>';
+	            	if (!value.practica_realizada) {
+	            		practica = 'No';
+	            	}else{
+	            		practica = 'SI';
+	            	}
+	            	html += '<td>'+practica+'</td>';
+	            	fecha_emision = '';
+	            	if (value.fecha_emision) {
+	            		fecha_emision = value.fecha_emision;
+	            	}
+	            	html += '<td>'+fecha_emision+'</td>';
+	            	fecha_entrega = '';
+	            	if (value.fecha_entrega) {
+	            		fecha_entrega = value.fecha_entrega;
+	            	}
+	            	html += '<td>'+fecha_entrega+'</td>';
+	            	numero_registro = '';
+	            	if (value.numero_registro) {
+	            		numero_registro = value.numero_registro;
+	            	}
+	            	html += '<td>'+numero_registro+'</td>';
+	            	html += '</tr>';
+	            });
+
+	            $("#tbmodulos tbody").html(html);
+	        },
+	    });
+	});
+</script>
 
 </body>
 </html>

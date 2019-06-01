@@ -17,9 +17,9 @@
             </script>
         <?php endif ?>
         <?php echo form_open('usuarios/update', "enctype=multipart/form-data"); ?>
-        <input type="hidden" name="idUsuario" value="<?php echo $usuario->id?>">
+        <input type="hidden" name="idUsuario" value="<?php echo $usuario->id;?>">
         <div class="box-body">
-            <div class="col-md-6">
+            <div class="col-md-12">
                
                 <div class="form-group">
                     <label for="nombres">Nombres:</label>
@@ -29,29 +29,16 @@
                     <label for="apellidos">Apellidos:</label>
                     <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos" required="required" value="<?php echo set_value('apellidos')?:$usuario->apellidos; ?>">
                 </div>
-                <div class="form-group <?php echo form_error('email') == true ? 'has-error' : '' ?>">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" required="required" value="<?php echo set_value('email')?:$usuario->email; ?>">
-                    <?php echo form_error('email'); ?>
-                </div>
-                
-            </div>
-            <div class="col-md-6">
                 <div class="form-group <?php echo form_error('dni') == true ? 'has-error' : '' ?>">
                     <label for="dni">DNI</label>
-                    <input type="text" class="form-control" id="dni" name="dni" placeholder="DNI" required="required" value="<?php echo set_value('dni')?:$usuario->dni; ?>" maxlength="8">
+                    <input type="text" class="form-control" id="dni" name="dni" placeholder="DNI" required="required" value="<?php echo set_value('dni')?:$usuario->dni; ?>">
                     <?php echo form_error('dni'); ?>
                 </div>
-                <div class="form-group">
-                    <label for="telefono">Telefono</label>
-                    <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Telefono" value="<?php echo set_value('telefono')?:$usuario->telefono; ?>" maxlength="9">
-                </div>
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" value="0" id="checkChangePassword" name="checkChangePassword">
-                        Cambiar Contraseña
-                    </label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Nueva Contraseña" disabled="disabled">
+
+                <div class="form-group <?php echo form_error('username') == true ? 'has-error' : '' ?>">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required="required" value="<?php echo set_value('username') ?: $usuario->username; ?>" maxlength="8">
+                    <?php echo form_error('username'); ?>
                 </div>
             </div>
         </div>

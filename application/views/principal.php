@@ -44,7 +44,7 @@
 									<td id="semestre"></td>
 								</tr>
 								<tr>
-									<th>ESPECIALIDAD:</th>
+									<th>PROGRAMA DE ESTUDIO:</th>
 									<td id="especialidad"></td>
 								</tr>
 							</tbody>
@@ -60,10 +60,10 @@
 								<tr>
 									<th>MODULO</th>
 									<th>PRACTICA</th>
-									<th>CERTIFICADO</th>
 									<th>FECHA DE EMISION</th>
 									<th>FECHA DE ENTREGA</th>
 									<th>N° DE REGISTRO</th>
+									<th>Editar</th>
 								</tr>
 							</thead>
 							<tbody>
