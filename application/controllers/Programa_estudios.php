@@ -14,7 +14,7 @@ class Programa_estudios extends CI_Controller {
 	public function index()
 	{
 		$contenido_interno = array(
-            'especialidades' => $this->Backend_model->get_records('especialidades'),
+            'especialidades' => $this->Backend_model->get_records('especialidades',"estado=1"),
         );
 
         $contenido_exterior = array(
@@ -101,6 +101,18 @@ class Programa_estudios extends CI_Controller {
                 //$this->session->set_flashdata("error","No se pudo registrar al usuario");
                 redirect(base_url() . "programa_estudios/edit/".$idEspecialidad);
             }
+        }
+    }
+
+    public function delete(){
+        $id = $this->input->post("id");
+        $data  = array(
+            'estado' => 0, 
+        );
+        if ($this->Backend_model->update("especialidades","id=$id", $data)) {
+            echo "1";
+        }else{
+            echo "0";
         }
     }
 

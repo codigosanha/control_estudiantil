@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<hr>
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3 col-xs-12">
-				<h2 class="text-center">Buscar información del estudiante</h2>
+				<p class="text-center">Buscar información del estudiante</p>
 				<div class="form-group">
 					<input type="text" id="search-estudiante" name="search-estudiante" class="form-control" placeholder="Introduzca algo...">
 				</div>
@@ -108,7 +108,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$("#search-estudiante").autocomplete({
 	        source:function(request, response){
 	            $.ajax({
-	                url: base_url+"estudiantes/getInfoEstudiante",
+	                url: base_url+"welcome/getInfoEstudiante",
 	                type: "POST",
 	                dataType:"json",
 	                data:{ valor: request.term},

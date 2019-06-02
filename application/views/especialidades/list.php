@@ -42,7 +42,10 @@
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo $especialidad->nombre; ?></td>
                                     <td>
-                                        <a href="<?php echo base_url(); ?>programa_estudios/edit/<?php echo $especialidad->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <div class="btn-group">
+                                            <a href="<?php echo base_url(); ?>programa_estudios/edit/<?php echo $especialidad->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            <button type="button" class="btn btn-danger btn-flat btn-eliminar-especialidad" title="Eliminar" value="<?php echo $especialidad->id;?>"><span class="glyphicon glyphicon-remove"></span></button>
+                                        </div>
                                     </td>
                                 </tr>
                                 <?php $i++;?>

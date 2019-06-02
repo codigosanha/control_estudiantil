@@ -174,11 +174,11 @@
 	                </div>
 	                <div class="form-group">
 	                	<label for="">Fecha de Emisión</label>
-	                	<input type="text" name="fecha_emision" class="form-control">
+	                	<input type="date" name="fecha_emision" class="form-control">
 	                </div>
 	                <div class="form-group">
 	                	<label for="">Fecha de Entrega</label>
-	                	<input type="text" name="fecha_entrega" class="form-control">
+	                	<input type="date" name="fecha_entrega" class="form-control">
 	                </div>
 	                <div class="form-group">
 	                	<label for="">Numero de Registro</label>

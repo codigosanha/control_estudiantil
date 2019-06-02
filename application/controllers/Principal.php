@@ -7,7 +7,7 @@ class Principal extends CI_Controller {
         parent::__construct();
 		$this->load->model('Usuarios_model');
         if (!$this->session->userdata('login')) {
-            redirect(base_url());
+            redirect(base_url()."login");
         }
 	}
 

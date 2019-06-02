@@ -16,7 +16,7 @@ class Estudiantes extends CI_Controller {
 	public function index()
 	{
 		$contenido_interno = array(
-            'estudiantes' => $this->Backend_model->get_records('estudiantes'),
+            'estudiantes' => $this->Backend_model->get_records('estudiantes',"estado=1"),
         );
 
         $contenido_exterior = array(
@@ -241,6 +241,38 @@ class Estudiantes extends CI_Controller {
             echo "0";
         }
 
+    }
+
+    public function updateCertificado(){
+        $idModEst = $this->input->post("idModEst");
+        $fecha_emision = $this->input->post("fecha_emision");
+        $fecha_entrega = $this->input->post("fecha_entrega");
+        $numero_registro = $this->input->post("numero_registro");
+
+        $dataCertificado = array(
+            'fecha_emision' => $fecha_emision, 
+            'fecha_entrega' => $fecha_entrega, 
+            'numero_registro' => $numero_registro, 
+            'estado_certificado' => 1
+        );
+
+        if ($this->Estudiantes_model->updateCertificado($idModEst,$dataCertificado)) {
+            echo "1";
+        }else{
+            echo "0";
+        }
+    }
+
+    public function delete(){
+        $id = $this->input->post("id");
+        $data  = array(
+            'estado' => 0, 
+        );
+        if ($this->Estudiantes_model->update($id, $data)) {
+            echo "1";
+        }else{
+            echo "0";
+        }
     }
 
 }

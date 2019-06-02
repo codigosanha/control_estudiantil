@@ -50,7 +50,10 @@
                                     <td><?php echo getNumeroRomano($estudiante->semestre); ?></td>
                                     <td><?php echo getEspecialidad($estudiante->especialidad_id)->nombre; ?></td>
                                     <td>
-                                        <a href="<?php echo base_url(); ?>estudiantes/edit/<?php echo $estudiante->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <div class="btn-group">
+                                            <a href="<?php echo base_url(); ?>estudiantes/edit/<?php echo $estudiante->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            <button type="button" class="btn btn-danger btn-flat btn-eliminar-estudiante" title="Eliminar" value="<?php echo $estudiante->id;?>"><span class="glyphicon glyphicon-remove"></span></button>
+                                        </div>
                                     </td>
                                 </tr>
                                 <?php $i++;?>

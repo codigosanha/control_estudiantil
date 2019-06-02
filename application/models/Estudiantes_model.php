@@ -7,6 +7,7 @@ class Estudiantes_model extends CI_Model {
 		$this->db->like('nombres', $search); 
 		$this->db->or_like('apellidos', $search);
 		$this->db->or_like('dni', $search);
+		$this->db->where("estado",1);
 		$resultados = $this->db->get("estudiantes");
 		return $resultados->result();
 	}
@@ -25,5 +26,26 @@ class Estudiantes_model extends CI_Model {
 		$this->db->where('estudiante_id', $estudiante_id);
 		$this->db->where('modulo_id', $modulo_id);
 		return $this->db->update("estudiantes_modulos",$data);
+	}
+
+	public function updateCertificado($id,$data){
+		$this->db->where('id', $id); 
+		return $this->db->update("estudiantes_modulos",$data);
+	}
+
+	public function delete($id){
+		$this->db->where('id', $id);
+		if ($this->db->delete("estudiantes")) {
+
+			$this->db->where("estudiante_id", $id);
+			$this->db->delete("estudiantes_modulos");
+			return true;
+		}
+		return false;
+	}
+
+	public function update($id, $data){
+		$this->db->where('id', $id); 
+		return $this->db->update("estudiantes",$data);
 	}
 }

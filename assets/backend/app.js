@@ -61,44 +61,43 @@ $(document).ready(function(){
 				html = '';
 		        $.each(data, function(key, value){
 		        	dataEstudianteModulo = value.estudiante_id +"*"+ value.modulo_id;
-		        	html += '<tr id="mod'+value.modulo_id+'">';
-		        	html += '<td><input type="hidden" value="'+dataEstudianteModulo+'">'+value.nombre+'</td>';
-		        	if (!value.practica_realizada) {
-		        		practica = '<input type="checkbox" class="minimal confirmar_practica" value="'+dataEstudianteModulo+'">';
-		        	}else{
-		        		practica = 'SI'
-		        	}
-		        	html += '<td>'+practica+'</td>';
-		        	estado_certificado = '';
-		        	if (!value.estado_certificado) {
-		        		estado_certificado = '<span class="label label-danger">Pendiente</span><br>';
-		        		estado_certificado += '<a href="#myModal" data-toggle="modal" class="btn-change" data-href="0">Cambiar a Emitido</a>';
-		        	}else if(value.estado_certificado == 1){
-		        		estado_certificado = '<span class="label label-warning">Emitido</span><br>';
-		        		estado_certificado += '<a href="#myModal" data-toggle="modal" class="btn-change" data-href="'+value.estado_certificado+'">Cambiar a Entregado</a>';
-		        	}else {
-		        		estado_certificado = '<span class="label label-success">Entregado</span>';
-		        	}
-		        	html += '<td>'+estado_certificado+'</td>';
-		        	if (!value.fecha_emision) {
+	            	html += '<tr id="mod'+value.modulo_id+'">';
+	            	html += '<td><input type="hidden" value="'+dataEstudianteModulo+'">'+value.nombre+'</td>';
+	            	if (!value.practica_realizada) {
+	            		practica = '<input type="checkbox" class="minimal confirmar_practica" value="'+dataEstudianteModulo+'">';
+	            	}else{
+	            		practica = 'SI'
+	            	}
+	            	html += '<td>'+practica+'</td>';
+	        
+	            	if (!value.fecha_emision) {
 		        		fecha_emision = '';
 		        	}else{
 		        		fecha_emision = value.fecha_emision;
 		        	}
 	            	html += '<td>'+fecha_emision+'</td>';
-		        	if (!value.fecha_entrega) {
+	            	if (!value.fecha_entrega) {
 		        		fecha_entrega = '';
 		        	}else{
 		        		fecha_entrega = value.fecha_entrega;
 		        	}
 	            	html += '<td>'+fecha_entrega+'</td>';
-		        	if (!value.numero_registro) {
-		        		numero_registro = '<button type="button" class="btn btn-primary btn-establecer-numero" data-toggle="modal" data-target="#modal-numero-registro" value="'+dataEstudianteModulo+'">Establecer</button>';
+	            	if (!value.numero_registro) {
+	            		numero_registro = '';
 		        	}else{
 		        		numero_registro = value.numero_registro;
 		        	}
 	            	html += '<td>'+numero_registro+'</td>';
-		        	html += '</tr>';
+	            	if (!value.estado_certificado) {
+	            		html += '<td>';
+		            	html += '<button type="button" class="btn btn-warning btn-edit-certificado" value="'+value.id+'" data-toggle="modal" data-target="#modal-certificado">';
+		            	html += '<span class="fa fa-pencil"></span>'
+		            	html += '</button></td>';
+		        	}else{
+		        		html += '<td></td>';
+		        	}
+	            	
+	            	html += '</tr>';
 		        });
 
 		        $("#tbmodulos tbody").html(html);
@@ -227,10 +226,14 @@ $(document).ready(function(){
 	        		numero_registro = value.numero_registro;
 	        	}
             	html += '<td>'+numero_registro+'</td>';
-            	html += '<td>';
-            	html += '<button type="button" class="btn btn-warning btn-edit-certificado" value="'+value.id+'" data-toggle="modal" data-target="#modal-certificado">';
-            	html += '<span class="fa fa-pencil"></span>'
-            	html += '</button></td>';
+            	if (!value.estado_certificado) {
+            		html += '<td>';
+	            	html += '<button type="button" class="btn btn-warning btn-edit-certificado" value="'+value.id+'" data-toggle="modal" data-target="#modal-certificado">';
+	            	html += '<span class="fa fa-pencil"></span>'
+	            	html += '</button></td>';
+	        	}else{
+	        		html += '<td></td>';
+	        	}
             	html += '</tr>';
             });
 
@@ -251,7 +254,7 @@ $(document).ready(function(){
     $("#form-update-certificado").submit(function(e){
     	e.preventDefault();
     	dataForm = $(this).serialize();
-    	url: $(this).attr("action");
+    	url= $(this).attr("action");
     	$.ajax({
     		url: url,
     		type: "POST",
@@ -298,6 +301,70 @@ $(document).ready(function(){
 		function(isConfirm){
 		   	if (isConfirm){
 		   		window.location.href= base_url + "auth/logout";
+		    } 
+		});
+	});
+
+	$(document).on("click",".btn-eliminar-especialidad",function(){
+		idEstudiante = $(this).val();
+
+		swal({
+		    title: "¿Ventana de Confirmación?",
+		    text: "Si estas seguro de eliminar el Programa de Estudio haga click en el boton Aceptar, caso contrario haga click en cancelar",
+		    type: "warning",
+	        showCancelButton: true,
+	        cancelButtonClass: "btn-danger",
+	        confirmButtonClass: "btn-success",
+	        confirmButtonText: "Aceptar",
+	        closeOnConfirm: true,
+		},
+		function(isConfirm){
+		   	if (isConfirm){
+		   		$.ajax({
+		   			url: base_url + "programa_estudios/delete",
+		   			type: "POST",
+		   			data:{id:idEstudiante},
+		   			success: function(resp){
+		   				if (resp==1) {
+		   					location.reload(true);
+		   				}else{
+		   					swal("error","No se pudo eliminar el Programa de Estudio","error");
+		   				}
+		   			}
+		   		});
+		   		
+		    } 
+		});
+	});
+
+	$(document).on("click",".btn-eliminar-estudiante",function(){
+		idEstudiante = $(this).val();
+
+		swal({
+		    title: "¿Ventana de Confirmación?",
+		    text: "Si estas seguro de eliminar al estudiante haga click en el boton Aceptar, caso contrario haga click en cancelar",
+		    type: "warning",
+	        showCancelButton: true,
+	        cancelButtonClass: "btn-danger",
+	        confirmButtonClass: "btn-success",
+	        confirmButtonText: "Aceptar",
+	        closeOnConfirm: true,
+		},
+		function(isConfirm){
+		   	if (isConfirm){
+		   		$.ajax({
+		   			url: base_url + "estudiantes/delete",
+		   			type: "POST",
+		   			data:{id:idEstudiante},
+		   			success: function(resp){
+		   				if (resp==1) {
+		   					location.reload(true);
+		   				}else{
+		   					swal("error","No se pudo eliminar al Estudiante","error");
+		   				}
+		   			}
+		   		});
+		   		
 		    } 
 		});
 	});
