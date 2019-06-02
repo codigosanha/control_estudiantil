@@ -14,7 +14,7 @@ class Programa_estudios extends CI_Controller {
 	public function index()
 	{
 		$contenido_interno = array(
-            'especialidades' => $this->Backend_model->get_records('especialidades',"estado=1"),
+            'especialidades' => $this->Backend_model->get_records('especialidades'),
         );
 
         $contenido_exterior = array(
@@ -104,10 +104,22 @@ class Programa_estudios extends CI_Controller {
         }
     }
 
-    public function delete(){
+    public function inactivar(){
         $id = $this->input->post("id");
         $data  = array(
             'estado' => 0, 
+        );
+        if ($this->Backend_model->update("especialidades","id=$id", $data)) {
+            echo "1";
+        }else{
+            echo "0";
+        }
+    }
+
+    public function activar(){
+        $id = $this->input->post("id");
+        $data  = array(
+            'estado' => 1, 
         );
         if ($this->Backend_model->update("especialidades","id=$id", $data)) {
             echo "1";

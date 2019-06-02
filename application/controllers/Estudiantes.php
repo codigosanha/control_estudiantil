@@ -30,7 +30,7 @@ class Estudiantes extends CI_Controller {
 	public function add(){
 
         $contenido_interno = array(
-            'especialidades' => $this->Backend_model->get_records('especialidades'),
+            'especialidades' => $this->Backend_model->get_records('especialidades',"estado=1"),
         );
 
         $contenido_exterior = array(
@@ -76,7 +76,7 @@ class Estudiantes extends CI_Controller {
 	}
 
     public function saveEstudianteModulos($objEstudiante){
-        $modulos = $this->Backend_model->get_records('modulos',"especialidad_id = $objEstudiante->especialidad_id");
+        $modulos = $this->Backend_model->get_records('modulos',"especialidad_id = $objEstudiante->especialidad_id AND estado=1");
         foreach ($modulos as $modulo) {
             $dataEstudianteModulo  = array(
                 'estudiante_id' => $objEstudiante->id,

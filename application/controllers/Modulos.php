@@ -115,4 +115,28 @@ class Modulos extends CI_Controller {
         }
     }
 
+    public function inactivar(){
+        $id = $this->input->post("id");
+        $data  = array(
+            'estado' => 0, 
+        );
+        if ($this->Backend_model->update("modulos","id=$id", $data)) {
+            echo "1";
+        }else{
+            echo "0";
+        }
+    }
+
+    public function activar(){
+        $id = $this->input->post("id");
+        $data  = array(
+            'estado' => 1, 
+        );
+        if ($this->Backend_model->update("modulos","id=$id", $data)) {
+            echo "1";
+        }else{
+            echo "0";
+        }
+    }
+
 }

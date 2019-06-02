@@ -31,6 +31,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
+                                <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -41,10 +42,23 @@
                                 <tr>
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo $especialidad->nombre; ?></td>
+
+                                    <td>
+                                        <?php if ($especialidad->estado == 0): ?>
+                                            <span class="label label-danger">Inactivo</span>
+                                        <?php else: ?>
+                                            <span class="label label-success">Activo</span>
+                                        <?php endif ?>
+                                        
+                                    </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="<?php echo base_url(); ?>programa_estudios/edit/<?php echo $especialidad->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
-                                            <button type="button" class="btn btn-danger btn-flat btn-eliminar-especialidad" title="Eliminar" value="<?php echo $especialidad->id;?>"><span class="glyphicon glyphicon-remove"></span></button>
+                                            <?php if ($especialidad->estado == 1): ?>
+                                                <a href="<?php echo base_url(); ?>programa_estudios/edit/<?php echo $especialidad->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+                                                <button type="button" class="btn btn-danger btn-flat btn-inactivar-especialidad" title="Inactivar" value="<?php echo $especialidad->id;?>"><span class="glyphicon glyphicon-remove"></span></button>
+                                            <?php else: ?>
+                                                <button type="button" class="btn btn-success btn-flat btn-activar-especialidad" title="Activar" value="<?php echo $especialidad->id;?>"><span class="glyphicon glyphicon-check"></span></button>
+                                            <?php endif ?>
                                         </div>
                                     </td>
                                 </tr>

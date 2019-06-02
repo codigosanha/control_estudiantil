@@ -305,12 +305,12 @@ $(document).ready(function(){
 		});
 	});
 
-	$(document).on("click",".btn-eliminar-especialidad",function(){
+	$(document).on("click",".btn-activar-especialidad",function(){
 		idEstudiante = $(this).val();
 
 		swal({
 		    title: "¿Ventana de Confirmación?",
-		    text: "Si estas seguro de eliminar el Programa de Estudio haga click en el boton Aceptar, caso contrario haga click en cancelar",
+		    text: "Si estas seguro de Activar el Programa de Estudio haga click en el boton Aceptar, caso contrario haga click en cancelar",
 		    type: "warning",
 	        showCancelButton: true,
 	        cancelButtonClass: "btn-danger",
@@ -321,14 +321,14 @@ $(document).ready(function(){
 		function(isConfirm){
 		   	if (isConfirm){
 		   		$.ajax({
-		   			url: base_url + "programa_estudios/delete",
+		   			url: base_url + "programa_estudios/activar",
 		   			type: "POST",
 		   			data:{id:idEstudiante},
 		   			success: function(resp){
 		   				if (resp==1) {
 		   					location.reload(true);
 		   				}else{
-		   					swal("error","No se pudo eliminar el Programa de Estudio","error");
+		   					swal("error","No se pudo Activar el Programa de Estudio","error");
 		   				}
 		   			}
 		   		});
@@ -336,6 +336,103 @@ $(document).ready(function(){
 		    } 
 		});
 	});
+
+	$(document).on("click",".btn-inactivar-especialidad",function(){
+		idEstudiante = $(this).val();
+
+		swal({
+		    title: "¿Ventana de Confirmación?",
+		    text: "Si estas seguro de Inactivar el Programa de Estudio haga click en el boton Aceptar, caso contrario haga click en cancelar",
+		    type: "warning",
+	        showCancelButton: true,
+	        cancelButtonClass: "btn-danger",
+	        confirmButtonClass: "btn-success",
+	        confirmButtonText: "Aceptar",
+	        closeOnConfirm: true,
+		},
+		function(isConfirm){
+		   	if (isConfirm){
+		   		$.ajax({
+		   			url: base_url + "programa_estudios/inactivar",
+		   			type: "POST",
+		   			data:{id:idEstudiante},
+		   			success: function(resp){
+		   				if (resp==1) {
+		   					location.reload(true);
+		   				}else{
+		   					swal("error","No se pudo Inhabilitar el Programa de Estudio","error");
+		   				}
+		   			}
+		   		});
+		   		
+		    } 
+		});
+	});
+
+	$(document).on("click",".btn-activar-modulo",function(){
+		idEstudiante = $(this).val();
+
+		swal({
+		    title: "¿Ventana de Confirmación?",
+		    text: "Si estas seguro de Activar el Módulo haga click en el boton Aceptar, caso contrario haga click en cancelar",
+		    type: "warning",
+	        showCancelButton: true,
+	        cancelButtonClass: "btn-danger",
+	        confirmButtonClass: "btn-success",
+	        confirmButtonText: "Aceptar",
+	        closeOnConfirm: true,
+		},
+		function(isConfirm){
+		   	if (isConfirm){
+		   		$.ajax({
+		   			url: base_url + "modulos/activar",
+		   			type: "POST",
+		   			data:{id:idEstudiante},
+		   			success: function(resp){
+		   				if (resp==1) {
+		   					location.reload(true);
+		   				}else{
+		   					swal("error","No se pudo Activar el Módulo","error");
+		   				}
+		   			}
+		   		});
+		   		
+		    } 
+		});
+	});
+
+	$(document).on("click",".btn-inactivar-modulo",function(){
+		idEstudiante = $(this).val();
+
+		swal({
+		    title: "¿Ventana de Confirmación?",
+		    text: "Si estas seguro de Inactivar el Módulo haga click en el boton Aceptar, caso contrario haga click en cancelar",
+		    type: "warning",
+	        showCancelButton: true,
+	        cancelButtonClass: "btn-danger",
+	        confirmButtonClass: "btn-success",
+	        confirmButtonText: "Aceptar",
+	        closeOnConfirm: true,
+		},
+		function(isConfirm){
+		   	if (isConfirm){
+		   		$.ajax({
+		   			url: base_url + "modulos/inactivar",
+		   			type: "POST",
+		   			data:{id:idEstudiante},
+		   			success: function(resp){
+		   				if (resp==1) {
+		   					location.reload(true);
+		   				}else{
+		   					swal("error","No se pudo Inactivar el Módulo","error");
+		   				}
+		   			}
+		   		});
+		   		
+		    } 
+		});
+	});
+
 
 	$(document).on("click",".btn-eliminar-estudiante",function(){
 		idEstudiante = $(this).val();

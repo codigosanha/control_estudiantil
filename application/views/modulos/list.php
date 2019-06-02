@@ -32,6 +32,7 @@
                                 <th>#</th>
                                 <th>Nombre</th>
                                 <th>Programa de Estudio</th>
+                                <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -44,7 +45,23 @@
                                     <td><?php echo $modulo->nombre; ?></td>
                                     <td><?php echo getEspecialidad($modulo->especialidad_id)->nombre; ?></td>
                                     <td>
-                                        <a href="<?php echo base_url(); ?>modulos/edit/<?php echo $modulo->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <?php if ($modulo->estado == 0): ?>
+                                            <span class="label label-danger">Inactivo</span>
+                                        <?php else: ?>
+                                            <span class="label label-success">Activo</span>
+                                        <?php endif ?>
+                                        
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <?php if ($modulo->estado == 1): ?>
+                                                <a href="<?php echo base_url(); ?>modulos/edit/<?php echo $modulo->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        
+                                                <button type="button" class="btn btn-danger btn-flat btn-inactivar-modulo" title="Inactivar" value="<?php echo $modulo->id;?>"><span class="glyphicon glyphicon-remove"></span></button>
+                                            <?php else: ?>
+                                                <button type="button" class="btn btn-success btn-flat btn-activar-modulo" title="Activar" value="<?php echo $modulo->id;?>"><span class="glyphicon glyphicon-check"></span></button>
+                                            <?php endif ?>
+                                        </div>
                                     </td>
                                 </tr>
                                 <?php $i++;?>
