@@ -40,6 +40,14 @@
                     <input type="text" class="form-control" id="username" name="username" placeholder="Username" required="required" value="<?php echo set_value('username') ?: $usuario->username; ?>" maxlength="8">
                     <?php echo form_error('username'); ?>
                 </div>
+                <div class="form-group">
+                    <label for="rol">Rol:</label>
+                    <select name="rol" id="rol" class="form-control" required="required">
+                        <option value="1" <?php echo $usuario->rol == 1 ? 'selected':'';?>>Director</option>
+                        <option value="2" <?php echo $usuario->rol == 2 ? 'selected':'';?>>Secretaria</option>
+                        <option value="3" <?php echo $usuario->rol == 3 ? 'selected':'';?>>Profesor</option>
+                    </select>
+                </div>
             </div>
         </div>
         <!-- /.box-body -->

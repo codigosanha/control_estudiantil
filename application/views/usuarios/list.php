@@ -34,6 +34,8 @@
                                 <th>Apellidos</th>
                                 <th>DNI</th>
                                 <th>Username</th>
+                                <th>Rol</th>
+                                <th>Cambiar Contraseña</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -47,6 +49,21 @@
                                     <td><?php echo $usuario->apellidos; ?></td>
                                     <td><?php echo $usuario->dni; ?></td>
                                     <td><?php echo $usuario->username; ?></td>
+                                    <td>
+                                        <?php 
+
+                                            if ($usuario->rol == 1) {
+                                                echo "Director";
+                                            }else if($usuario->rol == 2){
+                                                echo "Secretaria";
+                                            }else{
+                                                echo "Docente";
+                                            }
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <button type="button"  class="btn btn-default btn-change-password" value="<?php echo $usuario->id;?>" data-toggle="modal" data-target="#modal-default">Cambiar</button>
+                                    </td>
                                     <td>
                                         <a href="<?php echo base_url(); ?>usuarios/edit/<?php echo $usuario->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
                                         <button class="btn btn-danger btn-eliminar-usuario" value="<?php echo $usuario->id?>">
@@ -68,43 +85,33 @@
       <!-- /.box -->
 </section>
 
-<div class="modal modal-info fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal modal-default fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">PORTADA DEL usuario</h4>
+                <h4 class="modal-title">Cambiar Contraseña</h4>
             </div>
-          <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <h4>Portada Actual</h4>
-                        <img src="" alt="Portada Actual" class="image-actual img-responsive">
+            <form action="<?php echo base_url();?>usuarios/changePassword" method="POST" id="form-change-password">
+                <input type="hidden" id="idUsuario" name="idUsuario">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="newpass">Nueva Contraseña:</label>
+                        <input type="password" class="form-control" name="newpass" id="newpass">
                     </div>
-                    <div class="col-sm-8">
-                        <h4>Cambiar Imagen de Portada</h4>
-                        <form action="<?php echo base_url(); ?>backend/usuarios/changeImage" method="POST" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label class="control-label" for="imagen">Seleccione Imagen:</label>
-                                <input type="hidden" name="idusuario">
-                                <input type="file" id="imagen" name="imagen" />
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-warning">Guardar</button>
-                            </div>
-                        </form>
-
+                    <div class="form-group">
+                        <label for="repeatpass">Repetir Contraseña:</label>
+                        <input type="password" class="form-control" name="repeatpass" id="repeatpass">
                     </div>
                 </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cerrar</button>
-
-          </div>
-          </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
         </div>
         <!-- /.modal-content -->
-      </div>
-      <!-- /.modal-dialog -->
     </div>
+      <!-- /.modal-dialog -->
+</div>

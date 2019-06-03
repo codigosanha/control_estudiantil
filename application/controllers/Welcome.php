@@ -3,36 +3,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
-	public function __construct(){
-		parent::__construct();
-		$this->load->model("Estudiantes_model");
+    public function __construct(){
+        parent::__construct();
+        $this->load->model("Estudiantes_model");
         $this->load->helper("functions");
-	}
+    }
 
-	public function index()
-	{
+    public function index()
+    {
         $this->load->view('welcome_message');
-	}
-	public function getInfoEstudiante(){
-        $valor = $this->input->post("valor");
-        $estudiantes = $this->Estudiantes_model->getInfoEstudiante($valor);
+    }
+    public function getInfoEstudiante(){
+        $dni = $this->input->post("dni");
+        $estudiante = $this->Backend_model->get_record("estudiantes","dni='$dni'");
 
-        $data  = array();
 
-        foreach ($estudiantes as $e) {
-            $dataEstudiante['id'] = $e->id;
-            $dataEstudiante['nombres'] = $e->nombres;
-            $dataEstudiante['apellidos'] = $e->apellidos;
-            $dataEstudiante['dni'] = $e->dni;
-            $dataEstudiante['label'] = $e->dni ." - ".$e->nombres." ".$e->apellidos;
-            $dataEstudiante['semestre'] = getNumeroRomano($e->semestre);
-            $dataEstudiante['especialidad'] = getEspecialidad($e->especialidad_id)->nombre;
-            $modulos = $this->Estudiantes_model->getModulos($e->id);
-            $dataEstudiante['modulos'] = $modulos;
-
-            $data [] = $dataEstudiante;
+        if ($estudiante) {
+            $dataEstudiante = array(
+                'id' => $estudiante->id, 
+                'nombres' => $estudiante->nombres,
+                'apellidos' => $estudiante->apellidos,
+                'dni' => $estudiante->dni,
+                'semestre' => $estudiante->semestre,
+                'programa_estudio' => getEspecialidad($estudiante->especialidad_id)->nombre,
+            );
+            $data  = array(
+                'estudiante' => $dataEstudiante,
+                'modulos' => $this->Estudiantes_model->getModulos($estudiante->id)
+            );
+            echo json_encode($data);
+        }else{
+            echo "0";
         }
-
-        echo json_encode($data);
     }
 }

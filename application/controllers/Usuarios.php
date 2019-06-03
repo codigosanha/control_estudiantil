@@ -6,7 +6,7 @@ class Usuarios extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
         if (!$this->session->userdata('login')) {
-            redirect(base_url());
+            redirect(base_url()."auth");
         }
 		$this->load->model('Usuarios_model');
 	}
@@ -15,7 +15,7 @@ class Usuarios extends CI_Controller {
 	public function index()
 	{
 		$contenido_interno = array(
-            'usuarios' => $this->Usuarios_model->getUsuarios(),
+            'usuarios' => $this->Backend_model->get_records("usuarios","estado=1"),
         );
 
         $contenido_exterior = array(
@@ -40,6 +40,7 @@ class Usuarios extends CI_Controller {
         $username      = $this->input->post("username");
         $dni   = $this->input->post("dni");
         $password       = $this->input->post("password");
+        $rol = $this->input->post("rol");
 
         $this->form_validation->set_rules('dni', 'Numero de Documento', 'trim|required|is_unique[usuarios.dni]', array('required' => 'Debes proporcionar un %s.', 'is_unique' => 'Este %s ya existe'));
         $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[usuarios.username]', array('required' => 'Debes proporcionar un %s.', 'is_unique' => 'Este %s ya existe'));
@@ -53,7 +54,8 @@ class Usuarios extends CI_Controller {
                 'apellidos'        	=> $apellidos,
                 'dni'      			=> $dni,
                 'username'   			=> $username,
-                'password' 			=> md5($password),
+                'password' 			=> sha1($password),
+                'rol' => $rol
             );
 
             if ($this->Usuarios_model->save($dataUsuario)) {
@@ -85,6 +87,7 @@ class Usuarios extends CI_Controller {
     	$nombres    = $this->input->post("nombres");
         $apellidos  = $this->input->post("apellidos");
         $dni        = $this->input->post("dni");
+        $rol        = $this->input->post("rol");
 
         $usuarioActual = $this->Usuarios_model->getUsuario($idUsuario);
         $is_unique_username = '';
@@ -108,6 +111,7 @@ class Usuarios extends CI_Controller {
                 'nombres'    => $nombres,
                 'apellidos'  => $apellidos,
                 'dni'        => $dni,
+                'rol'        => $rol,
             );
 
             if ($this->Usuarios_model->update($idUsuario,$dataUsuario)) {
@@ -125,6 +129,20 @@ class Usuarios extends CI_Controller {
         if ($this->Usuarios_model->delete($idUsuario)) {
             echo "1";
         } else {
+            echo "0";
+        }
+    }
+
+    public function changePassword(){
+        $id = $this->input->post("idUsuario");
+        $password = $this->input->post("newpass");
+        $data = array(
+            "password" => sha1($password),
+        );
+
+        if ($this->Backend_model->update("usuarios","id=$id", $data)) {
+            echo "1";
+        }else{
             echo "0";
         }
     }

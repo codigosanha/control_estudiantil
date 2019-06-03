@@ -127,6 +127,7 @@
 
 <script>
 	var base_url = "<?php echo base_url();?>";
+	var rol = "<?php echo $this->session->userdata('rol');?>";
 </script>
 
 <script src="<?php echo base_url(); ?>assets/alertify/lib/alertify.min.js"></script>

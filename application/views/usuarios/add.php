@@ -43,6 +43,14 @@
                     <label for="password">Password:</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="password" value="<?php echo set_value('password')?:''; ?>" required="required">
                 </div>
+                <div class="form-group">
+                    <label for="rol">Rol:</label>
+                    <select name="rol" id="rol" class="form-control" required="required">
+                        <option value="1">Director</option>
+                        <option value="2">Secretaria</option>
+                        <option value="3">Profesor</option>
+                    </select>
+                </div>
             </div>
         </div>
         <!-- /.box-body -->

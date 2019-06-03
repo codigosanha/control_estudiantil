@@ -1,5 +1,35 @@
 $(document).ready(function(){
 	$('.sidebar-menu').tree();
+	$(document).on("click",".btn-change-password", function(){
+		var idUsuario = $(this).val();
+		$("#idUsuario").val(idUsuario);
+	});
+	$("#form-change-password").submit(function(e){
+		e.preventDefault();
+		var dataForm = $(this).serialize();
+		var url = $(this).attr("action");
+		var newpass = $("#newpass").val();
+		var repeatpass = $("#repeatpass").val();
+		if (newpass != repeatpass) {
+			swal("Error", "Las contraseñas no coinciden...intentalo nuevamente","error");
+		}else{
+			$.ajax({
+				url: url,
+				type:"POST",
+				data: dataForm,
+				dataType: "json",
+				success: function(resp){
+					if (resp ==1) {
+						$("#modal-default").modal('hide');
+						swal("Bien!","La contraseña ha sido actualizada","success");
+					}else{
+						swal("error","No se pudo cambiar la contraseña","error");
+					}
+				}
+			});
+		}
+		
+	});
 
 	$(document).on("click", ".btn-establecer-numero", function(){
 		infoEstudianteModulo = $(this).val();
@@ -203,6 +233,9 @@ $(document).ready(function(){
             	html += '<td><input type="hidden" value="'+dataEstudianteModulo+'">'+value.nombre+'</td>';
             	if (!value.practica_realizada) {
             		practica = '<input type="checkbox" class="minimal confirmar_practica" value="'+dataEstudianteModulo+'">';
+            		if (rol == 3) {
+            			practica = '';
+            		}
             	}else{
             		practica = 'SI'
             	}
@@ -226,14 +259,19 @@ $(document).ready(function(){
 	        		numero_registro = value.numero_registro;
 	        	}
             	html += '<td>'+numero_registro+'</td>';
-            	if (!value.estado_certificado) {
-            		html += '<td>';
-	            	html += '<button type="button" class="btn btn-warning btn-edit-certificado" value="'+value.id+'" data-toggle="modal" data-target="#modal-certificado">';
-	            	html += '<span class="fa fa-pencil"></span>'
-	            	html += '</button></td>';
-	        	}else{
-	        		html += '<td></td>';
-	        	}
+            	if (rol == 3) {
+        			html += '<td></td>';
+        		}else{
+        			if (!value.estado_certificado) {
+	            		html += '<td>';
+		            	html += '<button type="button" class="btn btn-warning btn-edit-certificado" value="'+value.id+'" data-toggle="modal" data-target="#modal-certificado">';
+		            	html += '<span class="fa fa-pencil"></span>'
+		            	html += '</button></td>';
+		        	}else{
+		        		html += '<td></td>';
+		        	}
+        		}
+            	
             	html += '</tr>';
             });
 

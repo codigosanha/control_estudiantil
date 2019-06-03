@@ -6,7 +6,7 @@ class Estudiantes extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
         if (!$this->session->userdata('login')) {
-            redirect(base_url());
+            redirect(base_url()."auth");
         }
         $this->load->model("Estudiantes_model");
         $this->load->helper("functions");
