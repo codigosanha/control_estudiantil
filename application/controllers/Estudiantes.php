@@ -265,10 +265,9 @@ class Estudiantes extends CI_Controller {
 
     public function delete(){
         $id = $this->input->post("id");
-        $data  = array(
-            'estado' => 0, 
-        );
-        if ($this->Estudiantes_model->update($id, $data)) {
+
+        if ($this->Backend_model->delete("estudiantes","id=$id")) {
+            $this->Backend_model->delete("estudiantes_modulos","estudiante_id=$id");
             echo "1";
         }else{
             echo "0";

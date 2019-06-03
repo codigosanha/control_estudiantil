@@ -220,6 +220,7 @@ $(document).ready(function(){
         	console.log(ui.item);
             //data = ui.item.id + "*"+ ui.item.codigo+ "*"+ ui.item.label+ "*"+ ui.item.precio+ "*"+ ui.item.stock;
             $("#infoEstudiante").show();
+            $("#reporte_estudiante").attr("href", base_url + "principal/reporte/" + ui.item.id);
             $("#estudiante").val(ui.item.id);
             $("#nombres").text(ui.item.nombres);
             $("#apellidos").text(ui.item.apellidos);
@@ -312,9 +313,16 @@ $(document).ready(function(){
 
 
 
-	$("#nombres, #apellidos, #autor, #editorial, #titulo").keydown(function(event){
+	$("#autor, #editorial, #titulo").keydown(function(event){
     	var key = event.which;
 	    if((key < 65 || key > 90) && key !==8 && key !== 32){
+	       	return false;
+	    }
+    });
+
+    $("#nombres,#apellidos").keydown(function(event){
+    	var key = event.which;
+	    if((key < 65 || key > 90) && key !==8 && key !== 32 && key!==192 && key!==255){
 	       	return false;
 	    }
     });

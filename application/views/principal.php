@@ -70,6 +70,9 @@
 							<tbody>
 							</tbody>
 						</table>
+						<a href="" target="_blank" id="reporte_estudiante" class="btn btn-danger btn-flat btn-lg">
+							<span class="glyphicon glyphicon-list-alt"></span> Ver en formato Reporte</a>
+
 					</div>
 				</div>
 			</div>
