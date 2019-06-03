@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Control Estudiantil | Login</title>
+  <title>SIS | Login</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -21,7 +21,7 @@
   
   <!-- /.login-logo -->
   <div class="login-box-body">
-  	<h2 class="text-center title-login">SISTEMA DE CONTROL ESTUDIANTIL</h2>
+  	<h2 class="text-center title-login">SISTEMA DE INFORMACION ESTUDIANTIL</h2>
 	<p class="login-box-msg">Introduzca sus datos para iniciar sesion</p>
 
 	<form action="<?php echo base_url() ?>auth/validar" method="post">
