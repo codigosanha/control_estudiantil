@@ -70,5 +70,9 @@
 		<th>N°. de resolución de aprobacion	</th>
 		<td colspan="4"><?php echo $informe->numero_resolucion;?></td>
 	</tr>
+	<tr>
+		<th>Nombre del Asesor</th>
+		<td colspan="4"><?php echo $informe->asesor;?></td>
+	</tr>
 </table>
 	

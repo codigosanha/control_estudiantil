@@ -17,7 +17,7 @@ class Principal extends CI_Controller {
         }
         $this->load->model('Estudiantes_model');
         $this->load->helper("functions");
-
+        $this->load->helper("download");
 
 	}
 
@@ -71,6 +71,11 @@ class Principal extends CI_Controller {
             'informe' => $this->Backend_model->get_record("estudiantes_modulos","id=$idEstMod"), 
         );
         $this->load->view("estudiantes/view_informe", $data);
+    }
+
+    public function resoluciones($file){
+        $file = 'assets/resoluciones/'.$file;
+        force_download($file, NULL);
     }
 
 

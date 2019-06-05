@@ -34,5 +34,16 @@
         	<label for="">N°. de Resolución de Aprobacion:</label><br>
         	<?php echo $informe->numero_resolucion;?>
         </div>
+        <div class="form-group">
+            <label for="">nombre del Asesor:</label><br>
+            <?php echo $informe->asesor;?>
+        </div>
+        <div class="form-group">
+            <label for="">Documento de la Resolución de Aprobación:</label><br>
+            <?php if ($informe->archivo_resolucion): ?>
+                <a href="<?php echo base_url();?>principal/resoluciones/<?php echo $informe->archivo_resolucion;?>"><?php echo $informe->archivo_resolucion;?></a>
+            <?php endif ?>
+                
+        </div>
 	</div>
 </div>

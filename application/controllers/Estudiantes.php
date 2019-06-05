@@ -192,6 +192,20 @@ class Estudiantes extends CI_Controller {
         $fecha_termino = $this->input->post("fecha_termino");
         $total_horas = $this->input->post("total_horas");
         $numero_resolucion = $this->input->post("numero_resolucion");
+        $asesor = $this->input->post("asesor");
+        $archivo_resolucion = '';
+        if (!empty($_FILES['file']['name'])) {
+            $config['upload_path']          = './assets/resoluciones/';
+            $config['allowed_types']        = 'pdf|doc|docx';
+
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('file'))
+            {
+                $data = array('upload_data' => $this->upload->data());
+                $archivo_resolucion = $data['upload_data']['file_name'];
+            } 
+            
+        }
         $data = array(
             'practica_realizada' => 1,
             'practica_modular' => $practica_modular,
@@ -200,6 +214,8 @@ class Estudiantes extends CI_Controller {
             'fecha_termino' => $fecha_termino,
             'total_horas' => $total_horas,
             'numero_resolucion' => $numero_resolucion,
+            'asesor' => $asesor,
+            'archivo_resolucion' => $archivo_resolucion,
         );
         if($this->Estudiantes_model->updateEstudianteModulo($estudiante_id,$modulo_id,$data)){
             echo $estudiante_id;

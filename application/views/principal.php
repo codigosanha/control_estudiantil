@@ -88,7 +88,7 @@
                 <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">CONFIRMACION DE PRACTICAS PRE PROFESIONALES</h4>
             </div>
-            <form action="<?php echo base_url(); ?>estudiantes/confirmar_practica" method="POST" id="form-confirmar-practica">
+            <form action="<?php echo base_url(); ?>estudiantes/confirmar_practica" method="POST" id="form-confirmar-practica" enctype="multipart/form-data">
 	          	<div class="modal-body">
 	                <div class="row">
 	                    <div class="col-sm-12">
@@ -129,6 +129,14 @@
 	                        	<label for="">N°. de Resolución de Aprobacion:</label>
 	                        	<input type="text" name="numero_resolucion" class="form-control" required="required">
 	                        </div>
+	                        <div class="form-group">
+			                	<label for="">Nombre del Asesor</label>
+			                	<input type="text" name="asesor" class="form-control" required="required">
+			                </div>
+			                <div class="form-group">
+			                	<label for="">Resolución de Aprobación</label>
+			                	<input type="file" name="file" class="form-control" accept=".doc,.docx,.pdf">
+			                </div>
 	                    </div>
 	                    <input type="hidden" name="estudiante_id" id="estudiante_id">
 	                    <input type="hidden" name="modulo_id" id="modulo_id">

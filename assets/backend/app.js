@@ -193,12 +193,16 @@ $(document).ready(function(){
 
 	$("#form-confirmar-practica").submit(function(e){
 		e.preventDefault();
-		data = $(this).serialize();
+		var formData = new FormData($(this)[0]);
+	
 		url = $(this).attr("action");
 		$.ajax({
 			url: url,
 			type:"POST",
-			data: data,
+			data: formData,
+			cache: false,
+    		contentType: false,
+    		processData: false,
 			success: function(resp){
 				$("#modal-confirmar-practica").modal("hide");
 				if (resp!=0) {

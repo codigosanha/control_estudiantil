@@ -37,7 +37,7 @@
 
                 <div class="form-group <?php echo form_error('username') == true ? 'has-error' : '' ?>">
                     <label for="username">Username:</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required="required" value="<?php echo set_value('username') ?: $usuario->username; ?>" maxlength="8">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required="required" value="<?php echo set_value('username') ?: $usuario->username; ?>">
                     <?php echo form_error('username'); ?>
                 </div>
                 <div class="form-group">
