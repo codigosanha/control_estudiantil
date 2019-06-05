@@ -53,6 +53,25 @@ class Principal extends CI_Controller {
         $this->pdfgenerator->generate($html, $filename, true, 'A4', 'landscape');
     }
 
+    public function reporte_practica($id){
+        $this->load->library('pdfgenerator');
+        $infoEstMod = $this->Backend_model->get_record("estudiantes_modulos","id=$id");
+        $data = array(
+            "estudiante" => $this->Backend_model->get_record("estudiantes","id=$infoEstMod->estudiante_id"),
+            'informe' => $infoEstMod
+        );
+        $html = $this->load->view('estudiantes/reporte_informe',$data, true);
+        $filename = 'Información_practica';
+        $this->pdfgenerator->generate($html, $filename, true, 'A4', 'landscape');
+    }
+
+    public function informe_practica(){
+        $idEstMod = $this->input->post("idEstMod");
+        $data  = array(
+            'informe' => $this->Backend_model->get_record("estudiantes_modulos","id=$idEstMod"), 
+        );
+        $this->load->view("estudiantes/view_informe", $data);
+    }
 
 
 }

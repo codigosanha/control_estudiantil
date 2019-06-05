@@ -41,30 +41,34 @@
 	</tbody>
 </table>
 
-
+<p class="text-center"><strong>INFORMACION DE PRACTICA MODULAR</strong></p>
 <table cellspacing="0" cellpadding="3">
-	<thead>
-		<tr>
-			<th colspan="2" class="text-center">INFORMACION DE MODULOS</th>
-			<th colspan="3" class="text-center">INFORMACION DEL CERTIFICADO</th>
-		</tr>
-		<tr>
-			<th class="text-center">MODULO</th>
-			<th class="text-center">PRACTICA</th>
-			<th class="text-center">FECHA DE EMISION</th>
-			<th class="text-center">FECHA DE ENTREGA</th>
-			<th class="text-center">N° DE REGISTRO</th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php foreach ($modulos as $modulo): ?>
-			<tr>
-				<td><?php echo $modulo->nombre;?></td>
-				<td><?php echo $modulo->practica_realizada? 'SI':'NO';?></td>
-				<td><?php echo $modulo->fecha_emision ?:'';?></td>
-				<td><?php echo $modulo->fecha_entrega ?:'';?></td>
-				<td><?php echo $modulo->numero_registro ?:'';?></td>
-			</tr>
-		<?php endforeach ?>
-	</tbody>
+	<tr>
+		<th>Nombre del Módulo</th>
+		<td colspan="4"><?php echo getModulo($informe->modulo_id)->nombre;?></td>
+	</tr>
+	<tr>
+		<th>Practica Modular</th>
+		<td colspan="4"><?php echo $informe->practica_modular;?></td>
+	</tr>
+	<tr>
+		<th>Titulo de la Práctica Modular</th>
+		<td colspan="4"><?php echo $informe->titulo_practica;?></td>
+	</tr>
+	<tr>
+		<th>Temporalidad de la Practica Modular</th>
+		<th>INICIO:</th>
+		<td><?php echo $informe->fecha_inicio;?></td>
+		<th>FIN:</th>
+		<td><?php echo $informe->fecha_termino;?></td>
+	</tr>
+	<tr>
+		<th>Total de Horas</th>
+		<td colspan="4"><?php echo $informe->total_horas;?></td>
+	</tr>
+	<tr>
+		<th>N°. de resolución de aprobacion	</th>
+		<td colspan="4"><?php echo $informe->numero_resolucion;?></td>
+	</tr>
 </table>
+	

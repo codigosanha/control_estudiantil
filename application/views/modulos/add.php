@@ -1,3 +1,8 @@
+<?php if ($this->session->flashdata("success")): ?>
+            <script>
+                swal("Exito", "<?php echo $this->session->flashdata("success") ;?>", "success");
+            </script>
+        <?php endif ?>
 <section class="content">
       <!-- Default box -->
     <div class="box">
@@ -11,11 +16,7 @@
                 <i class="fa fa-times"></i></button>
              </div>
         </div>
-        <?php if ($this->session->flashdata("success")): ?>
-            <script>
-                swal("Exito", "<?php echo $this->session->flashdata("success") ;?>", "success");
-            </script>
-        <?php endif ?>
+        
         <?php echo form_open('modulos/store', "enctype=multipart/form-data"); ?>
         <div class="box-body">
             <div class="row">

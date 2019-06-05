@@ -81,54 +81,7 @@
 	</div>
 	  <!-- /.box -->
 </section>
- <div class="modal modal-default fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">CAMBIO DE ESTADO</h4>
-            </div>
-            <form action="<?php echo base_url(); ?>estudiantes/cambioEstado" method="POST" id="form-cambio-estado">
-            	<input type="hidden" name="estudiante_id">
-	            <input type="hidden" name="modulo_id" >
-	          	<div class="modal-body">
-	                <div class="form-group">
-	                	<label for="">Estudiante:</label>
-	                	<p class="estudiante"></p>
-	                </div>
-	                <div class="form-group">
-	                	<label for="">Modulo</label>
-	                	<p class="modulo"></p>
-	                </div>
-	                <div class="form-group">
-	                	<label for="">Estado Actual</label>
-	                	<p class="estadoActual"></p>
-	                </div>
-	                <div class="form-group">
-	                	<label for="">Nuevo Estado</label>
-	                	<p class="nuevoEstado"></p>
-	                	<input type="hidden" name="nuevoEstado" id="nuevoEstado">
-	                </div>
-	                <div class="form-group">
-	                	<label for="">Indique Fecha de Cambio:</label>
-	                	<input type="date" name="fecha" value="<?php echo date("Y-m-d");?>">
-
-	                </div>
-	          	</div>
-	          	<div class="modal-footer">
-	            	<button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
-	            	<button type="submit" class="btn btn-success">Guardar</button>
-	          	</div>
-          	</form>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-      <!-- /.modal-dialog -->
-</div>
-
-<div class="modal modal-default fade" id="modal-confirmar-practica" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog">
+<div class="modal modal-default fade" id="modal-confirmar-practica" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -139,7 +92,43 @@
 	          	<div class="modal-body">
 	                <div class="row">
 	                    <div class="col-sm-12">
-	                        Realmente esta seguro de confirmar la realización de la practica pre profesionales por parte del estudiante <b class="estudiante"></b> en el modulo de <b class="modulo"></b>, de ser así haga click en el boton Confirmar caso contrario en Cancelar.
+	                    	<div class="form-group">
+	                        Para confirmar la realización de la practica pre profesionales por parte del estudiante <b class="estudiante"></b> en el modulo de <b class="modulo"></b> se debe llenar el siguiente formulario. 
+	                        </div>
+	                        <div class="form-group">
+	                        	<label for="">Nombre del Módulo:</label>
+	                        	<input type="text" class="form-control" id="modulo" required="required">
+	                        </div>
+	                        <div class="form-group">
+	                        	<label for="">Practica Modular:</label>
+	                        	<input type="text" name="practica_modular" class="form-control" required="required">
+	                        </div>
+	                        <div class="form-group">
+	                        	<label for="">Titulo de la Práctica Modular:</label>
+	                        	<textarea name="titulo_practica" class="form-control" required="required" rows="3"></textarea>
+	                        </div>
+	                        
+	                        	<p><strong>Temporabilidad de la Práctica Modular</strong></p>
+	                        	<div class="row">
+	                        		<div class="col-md-6 form-group">
+	                        			<label for="">Fecha de Inicio:</label>
+	                        			<input type="date" name="fecha_inicio" class="form-control" required="required">
+	                        		</div>
+	                        		<div class="col-md-6 form-group">
+	                        			<label for="">Fecha de Termino:</label>
+	                        			<input type="date" name="fecha_termino" class="form-control" required="required">
+	                        		</div>
+	                        	</div>
+	                        	
+	                    
+	                        <div class="form-group">
+	                        	<label for="">Total de Horas:</label>
+	                        	<input type="text" name="total_horas" class="form-control" required="required">
+	                        </div>
+	                        <div class="form-group">
+	                        	<label for="">N°. de Resolución de Aprobacion:</label>
+	                        	<input type="text" name="numero_resolucion" class="form-control" required="required">
+	                        </div>
 	                    </div>
 	                    <input type="hidden" name="estudiante_id" id="estudiante_id">
 	                    <input type="hidden" name="modulo_id" id="modulo_id">
@@ -196,6 +185,27 @@
 	            	<button type="submit" class="btn btn-success btn-confirmar">Guardar</button>
 	          	</div>
           	</form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+      <!-- /.modal-dialog -->
+</div>
+
+<div class="modal modal-default fade" id="modal-informe" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Información de Practica Modular</h4>
+            </div>
+
+          	<div class="modal-body">
+             
+          	</div>
+          	<div class="modal-footer">
+            	<button type="button" class="btn btn-danger btn-cancelar-practica pull-left" data-dismiss="modal">Cancelar</button>
+          	</div>
+         
         </div>
         <!-- /.modal-content -->
     </div>

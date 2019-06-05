@@ -25,7 +25,7 @@ if(!function_exists('getModulo'))
 		$ci = & get_instance();
 
 		$ci->db->where('id',$idModulo);
-		$query = $ci->db->get('modulo');
+		$query = $ci->db->get('modulos');
 		return $query->row();
 	 
 	}

@@ -1,3 +1,8 @@
+<?php if ($this->session->flashdata("success")): ?>
+                <script>
+                    swal("Exito", "<?php echo $this->session->flashdata("success") ;?>", "success");
+                </script>
+            <?php endif ?>
 <section class="content">
       <!-- Default box -->
     <div class="box">
@@ -12,18 +17,17 @@
              </div>
         </div>
         <div class="box-body">
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <a href="<?php echo base_url(); ?>estudiantes/add" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Estudiante</a>
+            <?php if ($this->session->userdata("rol") != 3): ?>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <a href="<?php echo base_url(); ?>estudiantes/add" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Estudiante</a>
+                    </div>
                 </div>
-            </div>
-            <!-- /.row -->
-            <?php if ($this->session->flashdata("success")): ?>
-                <script>
-                    swal("Exito", "<?php echo $this->session->flashdata("success") ;?>", "success");
-                </script>
+                <!-- /.row -->
+                
+                <hr>
             <?php endif ?>
-            <hr>
+            
             <div class="row">
                 <div class="col-md-12">
                     <table id="tb-without-buttons" class="table table-bordered">
@@ -50,10 +54,15 @@
                                     <td><?php echo getNumeroRomano($estudiante->semestre); ?></td>
                                     <td><?php echo getEspecialidad($estudiante->especialidad_id)->nombre; ?></td>
                                     <td>
-                                        <div class="btn-group">
-                                            <a href="<?php echo base_url(); ?>estudiantes/edit/<?php echo $estudiante->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
-                                            <button type="button" class="btn btn-danger btn-flat btn-eliminar-estudiante" title="Eliminar" value="<?php echo $estudiante->id;?>"><span class="glyphicon glyphicon-remove"></span></button>
-                                        </div>
+                                        <?php if ($this->session->userdata("rol") == 3): ?>
+                                            -
+                                        <?php else: ?>
+                                            <div class="btn-group">
+                                                <a href="<?php echo base_url(); ?>estudiantes/edit/<?php echo $estudiante->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+                                                <button type="button" class="btn btn-danger btn-flat btn-eliminar-estudiante" title="Eliminar" value="<?php echo $estudiante->id;?>"><span class="glyphicon glyphicon-remove"></span></button>
+                                            </div>
+                                        <?php endif ?>
+                                        
                                     </td>
                                 </tr>
                                 <?php $i++;?>

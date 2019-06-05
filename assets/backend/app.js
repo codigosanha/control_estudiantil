@@ -4,6 +4,18 @@ $(document).ready(function(){
 		var idUsuario = $(this).val();
 		$("#idUsuario").val(idUsuario);
 	});
+
+	$(document).on("click", ".btn-view-informe", function(){
+		var idEstMod = $(this).val();
+		$.ajax({
+			url: base_url+ "principal/informe_practica",
+			type: "POST",
+			data: {idEstMod:idEstMod},
+			success: function(resp){
+				$("#modal-informe .modal-body").html(resp);
+			}
+		});
+	});
 	$("#form-change-password").submit(function(e){
 		e.preventDefault();
 		var dataForm = $(this).serialize();
@@ -97,6 +109,8 @@ $(document).ready(function(){
 	            		practica = '<input type="checkbox" class="minimal confirmar_practica" value="'+dataEstudianteModulo+'">';
 	            	}else{
 	            		practica = 'SI'
+            			practica += ' <div class="btn-group" style="float:right;"><button type="button" class="btn btn-primary btn-xs btn-flat btn-view-informe" value="'+value.id+'" data-toggle="modal" data-target="#modal-informe"><span class="fa fa-eye"></span></button>'
+            			practica += ' <a href="'+base_url+'principal/reporte_practica/'+value.id+'" class="btn btn-danger btn-xs btn-flat" target="_blank"><span class="fa fa-file-pdf-o"></span></a></div>';
 	            	}
 	            	html += '<td>'+practica+'</td>';
 	        
@@ -167,6 +181,7 @@ $(document).ready(function(){
 		apellidos = $("#apellidos").text();
 		modulo = $(this).closest("tr").children("td:eq(0)").text();
 		$(".modulo").text(modulo);
+		$("#modulo").val(modulo);
 		$(".estudiante").text(nombres+" "+apellidos);
 		$("#modal-confirmar-practica").modal("show");
 	});
@@ -186,12 +201,10 @@ $(document).ready(function(){
 			data: data,
 			success: function(resp){
 				$("#modal-confirmar-practica").modal("hide");
-				if (resp==1) {
+				if (resp!=0) {
 					
 					swal("Bien", "Se actualizo correctamente la informacion de la practica pre profesional","success");
-					modulo = $("#modulo_id").val();
-					$("tr#mod"+modulo).children("td:eq(1)").find("input").remove();
-					$("tr#mod"+modulo).children("td:eq(1)").text("SI");
+					cargarModulos(resp);
 				} else {
 					swal("Error", "No se pudo actualizar la informacion de la practica","error");
 					modulo = $("#modulo_id").val();
@@ -238,7 +251,9 @@ $(document).ready(function(){
             			practica = '';
             		}
             	}else{
-            		practica = 'SI'
+            		practica = 'SI';
+            		practica += ' <div class="btn-group" style="float:right;"><button type="button" class="btn btn-primary btn-xs btn-flat btn-view-informe" value="'+value.id+'" data-toggle="modal" data-target="#modal-informe"><span class="fa fa-eye"></span></button>'
+            		practica += ' <a href="'+base_url+'principal/reporte_practica/'+value.id+'" class="btn btn-danger btn-xs btn-flat" target="_blank"><span class="fa fa-file-pdf-o"></span></a></div>';
             	}
             	html += '<td>'+practica+'</td>';
         

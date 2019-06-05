@@ -186,9 +186,23 @@ class Estudiantes extends CI_Controller {
     public function confirmar_practica(){
         $modulo_id = $this->input->post("modulo_id");
         $estudiante_id = $this->input->post("estudiante_id");
-        $data = array('practica_realizada' => 1);
+        $practica_modular = $this->input->post("practica_modular");
+        $titulo_practica = $this->input->post("titulo_practica");
+        $fecha_inicio = $this->input->post("fecha_inicio");
+        $fecha_termino = $this->input->post("fecha_termino");
+        $total_horas = $this->input->post("total_horas");
+        $numero_resolucion = $this->input->post("numero_resolucion");
+        $data = array(
+            'practica_realizada' => 1,
+            'practica_modular' => $practica_modular,
+            'titulo_practica' => $titulo_practica,
+            'fecha_inicio' => $fecha_inicio,
+            'fecha_termino' => $fecha_termino,
+            'total_horas' => $total_horas,
+            'numero_resolucion' => $numero_resolucion,
+        );
         if($this->Estudiantes_model->updateEstudianteModulo($estudiante_id,$modulo_id,$data)){
-            echo "1";
+            echo $estudiante_id;
         }else{
             echo "0";
         }

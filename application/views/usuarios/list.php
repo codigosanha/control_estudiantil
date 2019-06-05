@@ -1,3 +1,8 @@
+<?php if ($this->session->flashdata("success")): ?>
+                <script>
+                    swal("Exito", "<?php echo $this->session->flashdata("success") ;?>", "success");
+                </script>
+            <?php endif ?>
 <section class="content">
       <!-- Default box -->
     <div class="box">
@@ -12,18 +17,18 @@
              </div>
         </div>
         <div class="box-body">
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <a href="<?php echo base_url(); ?>usuarios/add" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo usuario</a>
+
+            <?php if ($this->session->userdata("rol") != 3): ?>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <a href="<?php echo base_url(); ?>usuarios/add" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo usuario</a>
+                    </div>
                 </div>
-            </div>
-            <!-- /.row -->
-            <?php if ($this->session->flashdata("success")): ?>
-                <script>
-                    swal("Exito", "<?php echo $this->session->flashdata("success") ;?>", "success");
-                </script>
+                <!-- /.row -->
+                
+                <hr>
             <?php endif ?>
-            <hr>
+            
             <div class="row">
                 <div class="col-md-12">
                     <table id="tb-without-buttons" class="table table-bordered">
@@ -62,13 +67,25 @@
                                         ?>
                                     </td>
                                     <td>
-                                        <button type="button"  class="btn btn-default btn-change-password" value="<?php echo $usuario->id;?>" data-toggle="modal" data-target="#modal-default">Cambiar</button>
+                                        <?php if ($this->session->userdata("rol") != 3): ?>
+                                            <button type="button"  class="btn btn-default btn-change-password" value="<?php echo $usuario->id;?>" data-toggle="modal" data-target="#modal-default">Cambiar</button>
+                                        <?php else: ?>
+                                            -
+                                        <?php endif ?>
+                                        
                                     </td>
                                     <td>
-                                        <a href="<?php echo base_url(); ?>usuarios/edit/<?php echo $usuario->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
-                                        <button class="btn btn-danger btn-eliminar-usuario" value="<?php echo $usuario->id?>">
-                                            <span class="fa fa-times"></span>
-                                        </button>
+                                        <?php if ($this->session->userdata("rol") == 3): ?>
+                                            -
+                                        <?php else: ?>
+                                            <div class="btn-group">
+                                                <a href="<?php echo base_url(); ?>usuarios/edit/<?php echo $usuario->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+                                                <button class="btn btn-danger btn-eliminar-usuario" value="<?php echo $usuario->id?>">
+                                                    <span class="fa fa-times"></span>
+                                                </button>
+                                            </div>
+                                        <?php endif ?>
+                                        
                                     </td>
                                 </tr>
                                 <?php $i++;?>

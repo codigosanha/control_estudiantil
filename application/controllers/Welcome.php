@@ -24,7 +24,7 @@ class Welcome extends CI_Controller {
                 'nombres' => $estudiante->nombres,
                 'apellidos' => $estudiante->apellidos,
                 'dni' => $estudiante->dni,
-                'semestre' => $estudiante->semestre,
+                'semestre' => getNumeroRomano($estudiante->semestre),
                 'programa_estudio' => getEspecialidad($estudiante->especialidad_id)->nombre,
             );
             $data  = array(

@@ -1,3 +1,8 @@
+<?php if ($this->session->flashdata("success")): ?>
+                <script>
+                    swal("Exito", "<?php echo $this->session->flashdata("success") ;?>", "success");
+                </script>
+            <?php endif ?>
 <section class="content">
       <!-- Default box -->
     <div class="box">
@@ -12,18 +17,17 @@
              </div>
         </div>
         <div class="box-body">
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <a href="<?php echo base_url(); ?>modulos/add" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Modulo</a>
+            <?php if ($this->session->userdata("rol") != 3): ?>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <a href="<?php echo base_url(); ?>modulos/add" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Modulo</a>
+                    </div>
                 </div>
-            </div>
-            <!-- /.row -->
-            <?php if ($this->session->flashdata("success")): ?>
-                <script>
-                    swal("Exito", "<?php echo $this->session->flashdata("success") ;?>", "success");
-                </script>
+                <!-- /.row -->
+                
+                <hr>
             <?php endif ?>
-            <hr>
+            
             <div class="row">
                 <div class="col-md-12">
                     <table id="tb-without-buttons" class="table table-bordered">
@@ -53,15 +57,20 @@
                                         
                                     </td>
                                     <td>
-                                        <div class="btn-group">
-                                            <?php if ($modulo->estado == 1): ?>
-                                                <a href="<?php echo base_url(); ?>modulos/edit/<?php echo $modulo->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <?php if ($this->session->userdata("rol") == 3): ?>
+                                            -
+                                        <?php else: ?>
+                                            <div class="btn-group">
+                                                <?php if ($modulo->estado == 1): ?>
+                                                    <a href="<?php echo base_url(); ?>modulos/edit/<?php echo $modulo->id; ?>" class="btn btn-warning btn-flat" title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            
+                                                    <button type="button" class="btn btn-danger btn-flat btn-inactivar-modulo" title="Inactivar" value="<?php echo $modulo->id;?>"><span class="glyphicon glyphicon-remove"></span></button>
+                                                <?php else: ?>
+                                                    <button type="button" class="btn btn-success btn-flat btn-activar-modulo" title="Activar" value="<?php echo $modulo->id;?>"><span class="glyphicon glyphicon-check"></span></button>
+                                                <?php endif ?>
+                                            </div>
+                                        <?php endif ?>
                                         
-                                                <button type="button" class="btn btn-danger btn-flat btn-inactivar-modulo" title="Inactivar" value="<?php echo $modulo->id;?>"><span class="glyphicon glyphicon-remove"></span></button>
-                                            <?php else: ?>
-                                                <button type="button" class="btn btn-success btn-flat btn-activar-modulo" title="Activar" value="<?php echo $modulo->id;?>"><span class="glyphicon glyphicon-check"></span></button>
-                                            <?php endif ?>
-                                        </div>
                                     </td>
                                 </tr>
                                 <?php $i++;?>
