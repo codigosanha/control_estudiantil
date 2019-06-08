@@ -7,7 +7,7 @@
       <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Lista de Modulos</h3>
+            <h3 class="box-title">Lista de Módulos Profesionales</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -20,7 +20,7 @@
             <?php if ($this->session->userdata("rol") != 4): ?>
                 <div class="row">
                     <div class="col-md-12 text-right">
-                        <a href="<?php echo base_url(); ?>modulos/add" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Modulo</a>
+                        <a href="<?php echo base_url(); ?>modulos/add" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Módulo Profesional</a>
                     </div>
                 </div>
                 <!-- /.row -->

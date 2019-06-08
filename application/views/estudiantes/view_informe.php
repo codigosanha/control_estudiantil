@@ -5,12 +5,16 @@
         	<?php echo getModulo($informe->modulo_id)->nombre;?>
         </div>
         <div class="form-group">
-        	<label for="">Practica Modular:</label><br>
+        	<label for="">Práctica Modular:</label><br>
         	<?php echo $informe->practica_modular;?>
         </div>
         <div class="form-group">
-        	<label for="">Titulo de la Práctica Modular:</label><br>
+        	<label for="">Título de la Práctica Modular:</label><br>
         	<?php echo $informe->titulo_practica;?>
+        </div>
+        <div class="form-group">
+            <label for="">Nombre del Asesor:</label><br>
+            <?php echo $informe->asesor;?>
         </div>
         
         	<p><strong>Temporabilidad de la Práctica Modular</strong></p>
@@ -31,13 +35,10 @@
         	<?php echo $informe->total_horas;?>
         </div>
         <div class="form-group">
-        	<label for="">N°. de Resolución de Aprobacion:</label><br>
+        	<label for="">N°. de Resolución de Aprobación:</label><br>
         	<?php echo $informe->numero_resolucion;?>
         </div>
-        <div class="form-group">
-            <label for="">nombre del Asesor:</label><br>
-            <?php echo $informe->asesor;?>
-        </div>
+        
         <div class="form-group">
             <label for="">Documento de la Resolución de Aprobación:</label><br>
             <?php if ($informe->archivo_resolucion): ?>

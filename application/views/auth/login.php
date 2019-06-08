@@ -14,15 +14,30 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/login.css">
+  <style>
+  	img{
+  		width: 120px;
+  		height: 120px;
+  		margin: 0 auto;
+  	}
+  	.login-box{
+  		margin: 3% auto;
+  	}
+  	h2{
+		color: #FFF;
+		font-weight: bold;
+  	}
+  </style>
 
 </head>
 <body>
+	<h2 class="text-center">SISTEMA DE INFORMACION ESTUDIANTIL</h2>
 <div class="login-box">
   
   <!-- /.login-logo -->
   <div class="login-box-body">
-  	<h2 class="text-center title-login">SISTEMA DE INFORMACION ESTUDIANTIL</h2>
-	<p class="login-box-msg">Introduzca sus datos para iniciar sesion</p>
+  	<img src="<?php echo base_url(); ?>assets/images/logo.png" alt="IESTP SAN MARCOS" class="img-responsive">
+	<p class="login-box-msg">Introduzca sus datos para iniciar sesión</p>
 
 	<form action="<?php echo base_url() ?>auth/validar" method="post">
 	  <div class="form-group has-feedback">

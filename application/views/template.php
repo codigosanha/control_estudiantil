@@ -79,7 +79,7 @@
                     <a href="<?php echo base_url();?>programa_estudios"><i class="fa fa-sitemap"></i> <span>Programa de Estudios</span></a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url();?>modulos"><i class="fa fa-cogs"></i> <span>Modulos</span></a>
+                    <a href="<?php echo base_url();?>modulos"><i class="fa fa-cogs"></i> <span>Módulos Profesionales</span></a>
                 </li>
                 <li>
                     <a href="<?php echo base_url();?>estudiantes"><i class="fa fa-user"></i> <span>Estudiantes</span></a>
@@ -103,10 +103,9 @@
 	<!-- /.content-wrapper -->
 	<footer class="main-footer">
 		<div class="pull-right hidden-xs">
-			<b>Version</b> 2.3.12
+			<b>Versión</b> 1.0
 		</div>
-		<strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-		reserved.
+		<strong>Copyright &copy; <?php echo date("Y");?> </strong> Todos los derechos reservados.
 	</footer>
 
 </div>

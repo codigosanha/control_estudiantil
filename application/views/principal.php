@@ -24,7 +24,7 @@
 				<div class="col-md-12">
 					<div style="display: none;" id="infoEstudiante">
 						<br>
-						<p class="text-center"><strong>INFORMACION DEL ESTUDIANTE</strong></p>
+						<p class="text-center"><strong>INFORMACIÓN DEL ESTUDIANTE</strong></p>
 						<input type="hidden" id="estudiante">
 						<table class="table table-bordered" style="background: #d2d6de;">
 							<tbody>
@@ -55,16 +55,16 @@
 						<table class="table table-bordered" id="tbmodulos" style="background: #d2d6de;">
 							<thead>
 								<tr>
-									<th colspan="2" class="text-center">INFORMACION DE MODULOS</th>
-									<th colspan="4" class="text-center">INFORMACION DEL CERTIFICADO</th>
+									<th colspan="2" class="text-center">INFORMACIÓN DE MÓDULOS PROFESIONALES</th>
+									<th colspan="4" class="text-center">INFORMACIÓN DEL CERTIFICADO</th>
 								</tr>
 								<tr>
-									<th>MODULO</th>
-									<th>PRACTICA</th>
-									<th>FECHA DE EMISION</th>
+									<th>MÓDULO</th>
+									<th>PRÁCTICA MODULAR</th>
+									<th>FECHA DE EMISIÓN</th>
 									<th>FECHA DE ENTREGA</th>
 									<th>N° DE REGISTRO</th>
-									<th>Editar</th>
+									<th>EDITAR</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -86,25 +86,25 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">CONFIRMACION DE PRACTICAS PRE PROFESIONALES</h4>
+                <h4 class="modal-title">CONFIRMACIÓN DE PRÁCTICAS PRE PROFESIONALES</h4>
             </div>
             <form action="<?php echo base_url(); ?>estudiantes/confirmar_practica" method="POST" id="form-confirmar-practica" enctype="multipart/form-data">
 	          	<div class="modal-body">
 	                <div class="row">
 	                    <div class="col-sm-12">
 	                    	<div class="form-group">
-	                        Para confirmar la realización de la practica pre profesionales por parte del estudiante <b class="estudiante"></b> en el modulo de <b class="modulo"></b> se debe llenar el siguiente formulario. 
+	                        Para confirmar la realización de la practica pre profesionales por parte del estudiante <b class="estudiante"></b> en el módulo profesional de <b class="modulo"></b> se debe llenar el siguiente formulario. 
 	                        </div>
 	                        <div class="form-group">
-	                        	<label for="">Nombre del Módulo:</label>
+	                        	<label for="">Nombre del Módulo Profesional:</label>
 	                        	<input type="text" class="form-control" id="modulo" required="required">
 	                        </div>
 	                        <div class="form-group">
-	                        	<label for="">Practica Modular:</label>
+	                        	<label for="">Práctica Modular:</label>
 	                        	<input type="text" name="practica_modular" class="form-control" required="required">
 	                        </div>
 	                        <div class="form-group">
-	                        	<label for="">Titulo de la Práctica Modular:</label>
+	                        	<label for="">Título de la Práctica Modular:</label>
 	                        	<textarea name="titulo_practica" class="form-control" required="required" rows="3"></textarea>
 	                        </div>
 	                        
@@ -115,7 +115,7 @@
 	                        			<input type="date" name="fecha_inicio" class="form-control" required="required">
 	                        		</div>
 	                        		<div class="col-md-6 form-group">
-	                        			<label for="">Fecha de Termino:</label>
+	                        			<label for="">Fecha de Término:</label>
 	                        			<input type="date" name="fecha_termino" class="form-control" required="required">
 	                        		</div>
 	                        	</div>
@@ -126,7 +126,7 @@
 	                        	<input type="text" name="total_horas" class="form-control" required="required">
 	                        </div>
 	                        <div class="form-group">
-	                        	<label for="">N°. de Resolución de Aprobacion:</label>
+	                        	<label for="">N°. de Resolución de Aprobación:</label>
 	                        	<input type="text" name="numero_resolucion" class="form-control" required="required">
 	                        </div>
 	                        <div class="form-group">
@@ -169,7 +169,7 @@
 	                	<p class="estudiante"></p>
 	                </div>
 	                <div class="form-group">
-	                	<label for="">Modulo</label>
+	                	<label for="">Módulo Profesional</label>
 	                	<p class="modulo"></p>
 	                </div>
 	                <div class="form-group">
@@ -181,7 +181,7 @@
 	                	<input type="date" name="fecha_entrega" class="form-control">
 	                </div>
 	                <div class="form-group">
-	                	<label for="">Numero de Registro</label>
+	                	<label for="">Número de Registro</label>
 	                	<input type="text" name="numero_registro" class="form-control">
 	                </div>
                     <input type="hidden" name="estudiante_id">
@@ -204,7 +204,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Información de Practica Modular</h4>
+                <h4 class="modal-title">Información de Práctica Modular</h4>
             </div>
 
           	<div class="modal-body">
