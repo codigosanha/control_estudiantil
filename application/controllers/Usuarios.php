@@ -86,6 +86,7 @@ class Usuarios extends CI_Controller {
         $idUsuario  = $this->input->post("idUsuario");
     	$nombres    = $this->input->post("nombres");
         $apellidos  = $this->input->post("apellidos");
+        $username  = $this->input->post("username");
         $dni        = $this->input->post("dni");
         $rol        = $this->input->post("rol");
 
@@ -110,6 +111,7 @@ class Usuarios extends CI_Controller {
             $dataUsuario = array(
                 'nombres'    => $nombres,
                 'apellidos'  => $apellidos,
+                'username'  => $username,
                 'dni'        => $dni,
                 'rol'        => $rol,
             );

@@ -18,7 +18,7 @@
         </div>
         <div class="box-body">
 
-            <?php if ($this->session->userdata("rol") != 3): ?>
+            <?php if ($this->session->userdata("rol") != 4): ?>
                 <div class="row">
                     <div class="col-md-12 text-right">
                         <a href="<?php echo base_url(); ?>usuarios/add" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo usuario</a>
@@ -61,13 +61,15 @@
                                                 echo "Director";
                                             }else if($usuario->rol == 2){
                                                 echo "Secretaria";
+                                            }else if($usuario->rol == 3){
+                                                echo "Secretaria Acádemica";
                                             }else{
                                                 echo "Docente";
                                             }
                                         ?>
                                     </td>
                                     <td>
-                                        <?php if ($this->session->userdata("rol") != 3): ?>
+                                        <?php if ($this->session->userdata("rol") != 4): ?>
                                             <button type="button"  class="btn btn-default btn-change-password" value="<?php echo $usuario->id;?>" data-toggle="modal" data-target="#modal-default">Cambiar</button>
                                         <?php else: ?>
                                             -
@@ -75,7 +77,7 @@
                                         
                                     </td>
                                     <td>
-                                        <?php if ($this->session->userdata("rol") == 3): ?>
+                                        <?php if ($this->session->userdata("rol") == 4): ?>
                                             -
                                         <?php else: ?>
                                             <div class="btn-group">

@@ -251,7 +251,7 @@ $(document).ready(function(){
             	html += '<td><input type="hidden" value="'+dataEstudianteModulo+'">'+value.nombre+'</td>';
             	if (!value.practica_realizada) {
             		practica = '<input type="checkbox" class="minimal confirmar_practica" value="'+dataEstudianteModulo+'">';
-            		if (rol == 3) {
+            		if (rol == 4) {
             			practica = '';
             		}
             	}else{
@@ -279,7 +279,7 @@ $(document).ready(function(){
 	        		numero_registro = value.numero_registro;
 	        	}
             	html += '<td>'+numero_registro+'</td>';
-            	if (rol == 3) {
+            	if (rol == 4) {
         			html += '<td></td>';
         		}else{
         			if (!value.estado_certificado) {

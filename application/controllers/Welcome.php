@@ -7,6 +7,7 @@ class Welcome extends CI_Controller {
         parent::__construct();
         $this->load->model("Estudiantes_model");
         $this->load->helper("functions");
+         $this->load->helper("download");
     }
 
     public function index()
@@ -35,5 +36,30 @@ class Welcome extends CI_Controller {
         }else{
             echo "0";
         }
+    }
+
+       public function reporte_practica($id){
+        $this->load->library('pdfgenerator');
+        $infoEstMod = $this->Backend_model->get_record("estudiantes_modulos","id=$id");
+        $data = array(
+            "estudiante" => $this->Backend_model->get_record("estudiantes","id=$infoEstMod->estudiante_id"),
+            'informe' => $infoEstMod
+        );
+        $html = $this->load->view('estudiantes/reporte_informe',$data, true);
+        $filename = 'Información_practica';
+        $this->pdfgenerator->generate($html, $filename, true, 'A4', 'landscape');
+    }
+
+    public function informe_practica(){
+        $idEstMod = $this->input->post("idEstMod");
+        $data  = array(
+            'informe' => $this->Backend_model->get_record("estudiantes_modulos","id=$idEstMod"), 
+        );
+        $this->load->view("estudiantes/view_informe", $data);
+    }
+
+    public function resoluciones($file){
+        $file = 'assets/resoluciones/'.$file;
+        force_download($file, NULL);
     }
 }

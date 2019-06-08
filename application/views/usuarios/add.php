@@ -48,7 +48,8 @@
                     <select name="rol" id="rol" class="form-control" required="required">
                         <option value="1">Director</option>
                         <option value="2">Secretaria</option>
-                        <option value="3">Profesor</option>
+                        <option value="3">Secretaria Acádemica</option>
+                        <option value="4">Docente</option>
                     </select>
                 </div>
             </div>

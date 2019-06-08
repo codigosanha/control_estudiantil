@@ -1,0 +1,76 @@
+html,body{
+	margin: 0;
+	background: #d2d6de;
+	height: 100%;
+	width: 100%;
+}
+.container{
+	background: #FFF;
+	height: auto;
+	min-height: 100%;
+}
+.info-estudiante{
+	padding: 0;
+}
+header img{
+	float: left;
+	width: 125px;
+	width: 125px;
+	margin-top: -95px;
+}
+header{
+	background: #17a2b8;
+	height: 150px;
+}
+header h1{
+	margin: 0;
+	color: #FFF;
+	font-weight: bold;
+	padding-top: 60px;
+
+}
+section{
+	padding:15px;
+}
+@media (min-width: 1281px) {
+
+  
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+	header img{
+		display: block !important;
+	}
+  
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+	header img{
+		display: none !important;
+	}
+
+}
+
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+  	header img{
+		display: none !important;
+	}
+	header h1{
+		padding-top: 20px;
+
+	}
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+	header img{
+		display: none !important;
+	}
+	header h1{
+		padding-top: 20px;
+
+	}
+}

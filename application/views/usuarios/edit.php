@@ -45,7 +45,8 @@
                     <select name="rol" id="rol" class="form-control" required="required">
                         <option value="1" <?php echo $usuario->rol == 1 ? 'selected':'';?>>Director</option>
                         <option value="2" <?php echo $usuario->rol == 2 ? 'selected':'';?>>Secretaria</option>
-                        <option value="3" <?php echo $usuario->rol == 3 ? 'selected':'';?>>Profesor</option>
+                        <option value="3" <?php echo $usuario->rol == 3 ? 'selected':'';?>>Secretaria Acádemica</option>
+                        <option value="4" <?php echo $usuario->rol == 4 ? 'selected':'';?>>Docente</option>
                     </select>
                 </div>
             </div>

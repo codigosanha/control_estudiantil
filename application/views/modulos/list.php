@@ -17,7 +17,7 @@
              </div>
         </div>
         <div class="box-body">
-            <?php if ($this->session->userdata("rol") != 3): ?>
+            <?php if ($this->session->userdata("rol") != 4): ?>
                 <div class="row">
                     <div class="col-md-12 text-right">
                         <a href="<?php echo base_url(); ?>modulos/add" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Modulo</a>
@@ -57,7 +57,7 @@
                                         
                                     </td>
                                     <td>
-                                        <?php if ($this->session->userdata("rol") == 3): ?>
+                                        <?php if ($this->session->userdata("rol") == 4): ?>
                                             -
                                         <?php else: ?>
                                             <div class="btn-group">

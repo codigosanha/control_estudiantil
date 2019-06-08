@@ -8,53 +8,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<title>SIS</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/jquery-ui/jquery-ui.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/sweetalert/sweetalert.css">
-
-	<style>
-		html,body{
-			margin: 0;
-			background: #d2d6de;
-			height: 100%;
-			width: 100%;
-		}
-		.container{
-			background: #FFF;
-			height: auto;
-			min-height: 100%;
-		}
-		.info-estudiante{
-			padding: 0;
-		}
-		header{
-			background: #17a2b8;
-			height: 150px;
-			padding-top: 60px;
-		}
-		header h1{
-			margin: 0;
-			color: #FFF;
-			font-weight: bold;
-
-		}
-		section{
-			padding:15px;
-		}
-		@media only screen and (max-width : 480px) {
-			header{
-				padding-top: 25px;
-			}
-			header h1{
-				font-size: 30px;
-			}
-		}
-	</style>
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/frontend/style.css">
 </head>
 <body>
 
 <div class="container info-estudiante">
 		<header>
+			
 			<h1 class="text-center">SISTEMA DE INFORMACION ESTUDIANTIL</h1>
+			<img src="<?php echo base_url(); ?>assets/images/logo.png" alt="IESTP SAN MARCOS" class="img-responsive">
 		</header>
 		<section>
 			<div class="row">
@@ -131,6 +97,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 	
 </div>
+<div class="modal modal-default fade" id="modal-informe" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Información de Practica Modular</h4>
+            </div>
+
+          	<div class="modal-body">
+             
+          	</div>
+          	<div class="modal-footer">
+            	<button type="button" class="btn btn-danger btn-cancelar-practica pull-left" data-dismiss="modal">Cancelar</button>
+          	</div>
+         
+        </div>
+        <!-- /.modal-content -->
+    </div>
+      <!-- /.modal-dialog -->
+</div>
+
 
 <script src="<?php echo base_url(); ?>assets/jquery/jquery.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -141,73 +128,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script>
 	var base_url = "<?php echo base_url();?>";
 </script>
-<script>
-	$(document).ready(function(){
-		$('input[name=dni]').keypress(function (tecla) {
-		  	if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-		});
-		$("#form-search-estudiante").submit(function(e){
-			e.preventDefault();
-	        var formData = $(this).serialize();
-
-	        $.ajax({
-	            url: base_url+"welcome/getInfoEstudiante",
-	            type: "POST",
-	            dataType:"json",
-	            data:formData,
-	            success:function(data){
-	            	if (data != "0") {
-	            		$("#infoEstudiante").show();
-			            $("#estudiante").val(data.estudiante.id);
-			            $("#nombres").text(data.estudiante.nombres);
-			            $("#apellidos").text(data.estudiante.apellidos);
-			            $("#dni").text(data.estudiante.dni);
-			            $("#semestre").text(data.estudiante.semestre);
-			            $("#programa_estudio").text(data.estudiante.programa_estudio);
-			            html = '';
-			            $.each(data.modulos, function(key, value){
-			            	dataEstudianteModulo = value.estudiante_id +"*"+ value.modulo_id;
-			            	html += '<tr id="mod'+value.modulo_id+'">';
-			            	html += '<td><input type="hidden" value="'+dataEstudianteModulo+'">'+value.nombre+'</td>';
-			            	if (!value.practica_realizada) {
-			            		practica = 'No';
-			            	}else{
-			            		practica = 'SI'
-			            	}
-			            	html += '<td>'+practica+'</td>';
-			        
-			            	if (!value.fecha_emision) {
-				        		fecha_emision = '';
-				        	}else{
-				        		fecha_emision = value.fecha_emision;
-				        	}
-			            	html += '<td>'+fecha_emision+'</td>';
-			            	if (!value.fecha_entrega) {
-				        		fecha_entrega = '';
-				        	}else{
-				        		fecha_entrega = value.fecha_entrega;
-				        	}
-			            	html += '<td>'+fecha_entrega+'</td>';
-			            	if (!value.numero_registro) {
-			            		numero_registro = '';
-				        	}else{
-				        		numero_registro = value.numero_registro;
-				        	}
-			            	html += '<td>'+numero_registro+'</td>';	        	
-			            	html += '</tr>';
-			            });
-
-			            $("#tbmodulos tbody").html(html);
-	            	}else{
-	            		$("#infoEstudiante").hide();
-	            		swal("Error","El DNI ingresado no esta registrado en el sistema","error");
-	            	}
-	                
-	            }
-	        });
-	    });
-	});
-</script>
+<script src="<?php echo base_url();?>assets/frontend/script.js"></script>
 
 </body>
 </html>

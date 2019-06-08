@@ -17,7 +17,7 @@
              </div>
         </div>
         <div class="box-body">
-            <?php if ($this->session->userdata("rol") != 3): ?>
+            <?php if ($this->session->userdata("rol") != 4): ?>
                 <div class="row">
                     <div class="col-md-12 text-right">
                         <a href="<?php echo base_url(); ?>estudiantes/add" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Estudiante</a>
@@ -54,7 +54,7 @@
                                     <td><?php echo getNumeroRomano($estudiante->semestre); ?></td>
                                     <td><?php echo getEspecialidad($estudiante->especialidad_id)->nombre; ?></td>
                                     <td>
-                                        <?php if ($this->session->userdata("rol") == 3): ?>
+                                        <?php if ($this->session->userdata("rol") == 4): ?>
                                             -
                                         <?php else: ?>
                                             <div class="btn-group">
