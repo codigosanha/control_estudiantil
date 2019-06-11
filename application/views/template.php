@@ -42,15 +42,14 @@
 		<nav class="navbar navbar-static-top">
 			<!-- Sidebar toggle button-->
 			<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
 
 			<div class="navbar-custom-menu">
 				<ul class="nav navbar-nav">
-
 					<li class="info-user">
 		              Usuario, <?php echo $this->session->userdata("user"); ?>
 		            </li>
@@ -59,10 +58,11 @@
 							<img src="<?php echo base_url(); ?>assets/images/logout.png" alt="Cerrar Session" >
 						</a>
 					</li>
-										<!-- Control Sidebar Toggle Button -->
-
 				</ul>
 			</div>
+			<p class="name name-large">Instituto de Educación Superior Tecnológico Público "San Marcos"</p>
+			<p class="name name-small">IESTP "San Marcos"</p>
+
 		</nav>
 	</header>
 	<!-- Left side column. contains the logo and sidebar -->
@@ -105,7 +105,8 @@
 		<div class="pull-right hidden-xs">
 			<b>Versión</b> 1.0
 		</div>
-		<strong>Copyright &copy; <?php echo date("Y");?> </strong> Todos los derechos reservados.
+		<strong>Copyright &copy; <?php echo date("Y");?> </strong> Todos los derechos reservados. - 
+		<span>Nilthon Paul Menacho Gonzales</span>
 	</footer>
 
 </div>
