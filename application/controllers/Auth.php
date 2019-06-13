@@ -31,12 +31,12 @@ class Auth extends CI_Controller {
             redirect(base_url() . "principal");
         } else {
             $this->session->set_flashdata("error","<span><strong>Lo sentimos,</strong> el username y contraseña ingresados no coinciden con nuestros registros</span>");
-            redirect(base_url()."auth");
+            redirect(base_url()."login");
         }
 	}
 
     public function logout(){
         $this->session->sess_destroy();
-        redirect(base_url()."auth");
+        redirect(base_url()."login");
     }
 }

@@ -219,3 +219,78 @@
     </div>
       <!-- /.modal-dialog -->
 </div>
+
+<div class="modal modal-default fade" id="modal-edit-practica" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">EDITAR INFORMACIÓN DE PRÁCTICAS PRE PROFESIONALES</h4>
+            </div>
+            <form action="<?php echo base_url(); ?>estudiantes/editar_practica" method="POST" id="form-edit-practica" enctype="multipart/form-data">
+	          	<div class="modal-body">
+	                <div class="row">
+	                    <div class="col-sm-12">
+	                        <div class="form-group">
+	                        	<label for="">Nombre del Módulo Profesional:</label>
+	                        	<input type="text" class="form-control" name="modulo" required="required">
+	                        </div>
+	                        <div class="form-group">
+	                        	<label for="">Práctica Modular:</label>
+	                        	<input type="text" name="practica_modular" class="form-control" required="required">
+	                        </div>
+	                        <div class="form-group">
+	                        	<label for="">Título de la Práctica Modular:</label>
+	                        	<textarea name="titulo_practica" class="form-control" required="required" rows="3"></textarea>
+	                        </div>
+	                        
+	                        	<p><strong>Temporabilidad de la Práctica Modular</strong></p>
+	                        	<div class="row">
+	                        		<div class="col-md-6 form-group">
+	                        			<label for="">Fecha de Inicio:</label>
+	                        			<input type="date" name="fecha_inicio" class="form-control" required="required">
+	                        		</div>
+	                        		<div class="col-md-6 form-group">
+	                        			<label for="">Fecha de Término:</label>
+	                        			<input type="date" name="fecha_termino" class="form-control" required="required">
+	                        		</div>
+	                        	</div>
+	                        	
+	                    
+	                        <div class="form-group">
+	                        	<label for="">Total de Horas:</label>
+	                        	<input type="text" name="total_horas" class="form-control" required="required">
+	                        </div>
+	                        <div class="form-group">
+	                        	<label for="">N°. de Resolución de Aprobación:</label>
+	                        	<input type="text" name="numero_resolucion" class="form-control" required="required">
+	                        </div>
+	                        <div class="form-group">
+			                	<label for="">Nombre del Asesor</label>
+			                	<input type="text" name="asesor" class="form-control" required="required">
+			                </div>
+			                <div class="form-group">
+			                	<label for="">Resolución de Aprobación</label>
+			                	<br>
+			                	<div id="info-documento">
+			                		<a href="#" class="btn-documento" target="_blank">documento.docx</a> <button type="button" class="btn btn-danger btn-quitar-documento btn-xs"> <span class="fa fa-times"></span></button>
+			                	</div>
+			                	
+			                	<input type="file" name="file" class="form-control" id="file" accept=".doc,.docx,.pdf">
+			                	<input type="hidden" name="estado" id="estado" value="0">
+			                </div>
+	                    </div>
+	                    <input type="hidden" name="estudiante_modulo" >
+	         
+	                </div>
+	          	</div>
+	          	<div class="modal-footer">
+	            	<button type="button" class="btn btn-danger btn-cancelar-practica pull-left" data-dismiss="modal">Cancelar</button>
+	            	<button type="submit" class="btn btn-success btn-confirmar">Confirmar</button>
+	          	</div>
+          	</form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+      <!-- /.modal-dialog -->
+</div>

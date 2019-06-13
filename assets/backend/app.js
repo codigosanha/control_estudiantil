@@ -16,6 +16,40 @@ $(document).ready(function(){
 			}
 		});
 	});
+	$(document).on("click", ".btn-quitar-documento", function(){
+
+		$("#info-documento").hide();
+		$("#file").show();
+		$("#estado").val("1");
+		
+	
+	});
+
+	$(document).on("click", ".btn-edit-practica", function(){
+		var infoEstMod = $(this).val();
+		var dataEstMod = infoEstMod.split("*");
+		$("input[name=estudiante_modulo]").val(dataEstMod[11]);
+		$("input[name=modulo]").val(dataEstMod[10]);
+		$("input[name=practica_modular]").val(dataEstMod[2]);
+		$("textarea[name=titulo_practica]").val(dataEstMod[3]);
+		$("input[name=fecha_inicio]").val(dataEstMod[4]);
+		$("input[name=fecha_termino]").val(dataEstMod[5]);
+		$("input[name=total_horas]").val(dataEstMod[6]);
+		$("input[name=numero_resolucion]").val(dataEstMod[7]);
+		$("input[name=asesor]").val(dataEstMod[8]);
+		if (dataEstMod[9]) {
+			$("#info-documento").show();
+			$(".btn-quitar-documento").val(dataEstMod[11]);
+			$("#info-documento a").attr("href", base_url+'principal/resoluciones/'+dataEstMod[9]);
+			$("#info-documento a").text(dataEstMod[9]);
+
+			$("#file").hide();
+		}else{
+			$("#file").show();
+			$("#info-documento").hide();
+		}
+	});
+
 	$("#form-change-password").submit(function(e){
 		e.preventDefault();
 		var dataForm = $(this).serialize();
@@ -102,7 +136,7 @@ $(document).ready(function(){
 			success: function(data){
 				html = '';
 		        $.each(data, function(key, value){
-		        	dataEstudianteModulo = value.estudiante_id +"*"+ value.modulo_id;
+            		dataEstudianteModulo = value.estudiante_id +"*"+ value.modulo_id+"*"+ value.practica_modular+"*"+ value.titulo_practica+"*"+ value.fecha_inicio+"*"+ value.fecha_termino+"*"+ value.total_horas+"*"+ value.numero_resolucion +"*"+ value.asesor+"*"+ value.archivo_resolucion+"*"+value.nombre+"*"+value.id;
 	            	html += '<tr id="mod'+value.modulo_id+'">';
 	            	html += '<td><input type="hidden" value="'+dataEstudianteModulo+'">'+value.nombre+'</td>';
 	            	if (!value.practica_realizada) {
@@ -110,6 +144,7 @@ $(document).ready(function(){
 	            	}else{
 	            		practica = 'SI'
             			practica += ' <div class="btn-group" style="float:right;"><button type="button" class="btn btn-primary btn-xs btn-flat btn-view-informe" value="'+value.id+'" data-toggle="modal" data-target="#modal-informe"><span class="fa fa-eye"></span></button>'
+            			practica += " <button type='button' class='btn btn-warning btn-xs btn-edit-practica' value='"+dataEstudianteModulo+"' data-toggle='modal' data-target='#modal-edit-practica'><span class='fa fa-pencil'></span></button>";
             			practica += ' <a href="'+base_url+'principal/reporte_practica/'+value.id+'" class="btn btn-danger btn-xs btn-flat" target="_blank"><span class="fa fa-file-pdf-o"></span></a></div>';
 	            	}
 	            	html += '<td>'+practica+'</td>';
@@ -173,6 +208,7 @@ $(document).ready(function(){
 	});
 
 	$(document).on("change", ".confirmar_practica", function(){
+		$("#form-confirmar-practica")[0].reset();
 		infoEstudianteModulo = $(this).val();
 		dataEstudianteModulo = infoEstudianteModulo.split("*");
 		$("#estudiante_id").val(dataEstudianteModulo[0]);
@@ -209,10 +245,41 @@ $(document).ready(function(){
 					
 					swal("Bien", "Se actualizo correctamente la informacion de la practica pre profesional","success");
 					cargarModulos(resp);
+					$("#form-confirmar-practica")[0].reset();
 				} else {
 					swal("Error", "No se pudo actualizar la informacion de la practica","error");
 					modulo = $("#modulo_id").val();
 					$("tr#mod"+modulo).children("td:eq(1)").find("input").removeAttr("checked");
+				}
+				
+			}
+		});
+
+	});
+
+	$("#form-edit-practica").submit(function(e){
+		e.preventDefault();
+		var formData = new FormData($(this)[0]);
+	
+		url = $(this).attr("action");
+		$.ajax({
+			url: url,
+			type:"POST",
+			data: formData,
+			cache: false,
+    		contentType: false,
+    		processData: false,
+			success: function(resp){
+				$("#modal-edit-practica").modal("hide");
+				if (resp!=0) {
+					
+					swal("Bien", "Se actualizo correctamente la informacion de la practica pre profesional","success");
+					cargarModulos($("#estudiante").val());
+					$("#form-edit-practica")[0].reset();
+					$("#estado").val("0");
+
+				} else {
+					swal("Error", "No se pudo actualizar la informacion de la practica","error");
 				}
 				
 			}
@@ -246,7 +313,7 @@ $(document).ready(function(){
             $("#especialidad").text(ui.item.especialidad);
             html = '';
             $.each(ui.item.modulos, function(key, value){
-            	dataEstudianteModulo = value.estudiante_id +"*"+ value.modulo_id;
+            	dataEstudianteModulo = value.estudiante_id +"*"+ value.modulo_id+"*"+ value.practica_modular+"*"+ value.titulo_practica+"*"+ value.fecha_inicio+"*"+ value.fecha_termino+"*"+ value.total_horas+"*"+ value.numero_resolucion +"*"+ value.asesor+"*"+ value.archivo_resolucion+"*"+value.nombre+"*"+value.id;
             	html += '<tr id="mod'+value.modulo_id+'">';
             	html += '<td><input type="hidden" value="'+dataEstudianteModulo+'">'+value.nombre+'</td>';
             	if (!value.practica_realizada) {
@@ -257,6 +324,7 @@ $(document).ready(function(){
             	}else{
             		practica = 'SI';
             		practica += ' <div class="btn-group" style="float:right;"><button type="button" class="btn btn-primary btn-xs btn-flat btn-view-informe" value="'+value.id+'" data-toggle="modal" data-target="#modal-informe"><span class="fa fa-eye"></span></button>'
+            		practica += " <button type='button' class='btn btn-warning btn-xs btn-edit-practica' value='"+dataEstudianteModulo+"' data-toggle='modal' data-target='#modal-edit-practica'><span class='fa fa-pencil'></span></button>";
             		practica += ' <a href="'+base_url+'principal/reporte_practica/'+value.id+'" class="btn btn-danger btn-xs btn-flat" target="_blank"><span class="fa fa-file-pdf-o"></span></a></div>';
             	}
             	html += '<td>'+practica+'</td>';

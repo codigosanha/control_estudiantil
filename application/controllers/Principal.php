@@ -78,6 +78,5 @@ class Principal extends CI_Controller {
         force_download($file, NULL);
     }
 
-
 }
 

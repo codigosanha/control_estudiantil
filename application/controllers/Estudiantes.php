@@ -225,6 +225,65 @@ class Estudiantes extends CI_Controller {
 
     }
 
+    public function editar_practica(){
+        $estudiante_modulo = $this->input->post("estudiante_modulo");
+        $practica_modular = $this->input->post("practica_modular");
+        $titulo_practica = $this->input->post("titulo_practica");
+        $fecha_inicio = $this->input->post("fecha_inicio");
+        $fecha_termino = $this->input->post("fecha_termino");
+        $total_horas = $this->input->post("total_horas");
+        $numero_resolucion = $this->input->post("numero_resolucion");
+        $asesor = $this->input->post("asesor");
+
+        if ($this->input->post("estado")) {
+            $archivo_resolucion = '';
+            if (!empty($_FILES['file']['name'])) {
+                $config['upload_path']          = './assets/resoluciones/';
+                $config['allowed_types']        = 'pdf|doc|docx';
+
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('file'))
+                {
+                    $data = array('upload_data' => $this->upload->data());
+                    $archivo_resolucion = $data['upload_data']['file_name'];
+                } 
+                
+            }
+        }else{
+            $archivo_resolucion = $this->Backend_model->get_record("estudiantes_modulos","id='$estudiante_modulo'")->archivo_resolucion;
+            if (!empty($_FILES['file']['name'])) {
+                $config['upload_path']          = './assets/resoluciones/';
+                $config['allowed_types']        = 'pdf|doc|docx';
+
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('file'))
+                {
+                    $data = array('upload_data' => $this->upload->data());
+                    $archivo_resolucion = $data['upload_data']['file_name'];
+                } 
+                
+            }
+        }
+
+        
+        $data = array(
+            'practica_modular' => $practica_modular,
+            'titulo_practica' => $titulo_practica,
+            'fecha_inicio' => $fecha_inicio,
+            'fecha_termino' => $fecha_termino,
+            'total_horas' => $total_horas,
+            'numero_resolucion' => $numero_resolucion,
+            'asesor' => $asesor,
+            'archivo_resolucion' => $archivo_resolucion,
+        );
+        if($this->Backend_model->update("estudiantes_modulos","id=$estudiante_modulo",$data)){
+            echo "1";
+        }else{
+            echo "0";
+        }
+
+    }
+
     public function cambioEstado(){
         $modulo_id = $this->input->post("modulo_id");
         $estudiante_id = $this->input->post("estudiante_id");

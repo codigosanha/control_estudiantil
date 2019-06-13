@@ -39,7 +39,7 @@
                         <select name="semestre" id="semestre" class="form-control" required="required">
                             <option value="">Seleccione..</option>
                             <?php
-                                for ($i=1; $i <= 6 ; $i++) { 
+                                for ($i=1; $i <= 7 ; $i++) { 
                                     $selected = '';
                                     if ($estudiante->semestre == $i) {
                                         $selected = 'selected';
