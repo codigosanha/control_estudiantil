@@ -40,7 +40,7 @@ $(document).ready(function(){
 		if (dataEstMod[9]) {
 			$("#info-documento").show();
 			$(".btn-quitar-documento").val(dataEstMod[11]);
-			$("#info-documento a").attr("href", base_url+'principal/resoluciones/'+dataEstMod[9]);
+			$("#info-documento a").attr("href", base_url+'principal/resoluciones/'+dataEstMod[11]);
 			$("#info-documento a").text(dataEstMod[9]);
 
 			$("#file").hide();
@@ -141,10 +141,15 @@ $(document).ready(function(){
 	            	html += '<td><input type="hidden" value="'+dataEstudianteModulo+'">'+value.nombre+'</td>';
 	            	if (!value.practica_realizada) {
 	            		practica = '<input type="checkbox" class="minimal confirmar_practica" value="'+dataEstudianteModulo+'">';
+	            		if (rol == 4) {
+	            			practica = '';
+	            		}
 	            	}else{
 	            		practica = 'SI'
             			practica += ' <div class="btn-group" style="float:right;"><button type="button" class="btn btn-primary btn-xs btn-flat btn-view-informe" value="'+value.id+'" data-toggle="modal" data-target="#modal-informe"><span class="fa fa-eye"></span></button>'
-            			practica += " <button type='button' class='btn btn-warning btn-xs btn-edit-practica' value='"+dataEstudianteModulo+"' data-toggle='modal' data-target='#modal-edit-practica'><span class='fa fa-pencil'></span></button>";
+            			if (rol != 4) {
+            				practica += " <button type='button' class='btn btn-warning btn-xs btn-edit-practica' value='"+dataEstudianteModulo+"' data-toggle='modal' data-target='#modal-edit-practica'><span class='fa fa-pencil'></span></button>";
+            			}
             			practica += ' <a href="'+base_url+'principal/reporte_practica/'+value.id+'" class="btn btn-danger btn-xs btn-flat" target="_blank"><span class="fa fa-file-pdf-o"></span></a></div>';
 	            	}
 	            	html += '<td>'+practica+'</td>';
@@ -324,7 +329,9 @@ $(document).ready(function(){
             	}else{
             		practica = 'SI';
             		practica += ' <div class="btn-group" style="float:right;"><button type="button" class="btn btn-primary btn-xs btn-flat btn-view-informe" value="'+value.id+'" data-toggle="modal" data-target="#modal-informe"><span class="fa fa-eye"></span></button>'
-            		practica += " <button type='button' class='btn btn-warning btn-xs btn-edit-practica' value='"+dataEstudianteModulo+"' data-toggle='modal' data-target='#modal-edit-practica'><span class='fa fa-pencil'></span></button>";
+            		if (rol != 4) {
+            			practica += " <button type='button' class='btn btn-warning btn-xs btn-edit-practica' value='"+dataEstudianteModulo+"' data-toggle='modal' data-target='#modal-edit-practica'><span class='fa fa-pencil'></span></button>";
+            		}
             		practica += ' <a href="'+base_url+'principal/reporte_practica/'+value.id+'" class="btn btn-danger btn-xs btn-flat" target="_blank"><span class="fa fa-file-pdf-o"></span></a></div>';
             	}
             	html += '<td>'+practica+'</td>';

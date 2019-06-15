@@ -48,7 +48,7 @@
                         $modulo = "principal";
                     } 
                 ?>
-                <a href="<?php echo base_url().$modulo;?>/resoluciones/<?php echo $informe->archivo_resolucion;?>"><?php echo $informe->archivo_resolucion;?></a>
+                <a href="<?php echo base_url().$modulo;?>/resoluciones/<?php echo $informe->id;?>"><?php echo $informe->archivo_resolucion;?></a>
                 
             <?php endif ?>
                 

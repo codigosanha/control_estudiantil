@@ -58,8 +58,9 @@ class Welcome extends CI_Controller {
         $this->load->view("estudiantes/view_informe", $data);
     }
 
-    public function resoluciones($file){
-        $file = 'assets/resoluciones/'.$file;
+    public function resoluciones($id){
+        $filename = $this->Backend_model->get_record("estudiantes_modulos","id='$id'")->archivo_resolucion;
+        $file = 'assets/resoluciones/'.$filename;
         force_download($file, NULL);
     }
 }
