@@ -6,7 +6,7 @@ class Estudiantes extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
         if (!$this->session->userdata('login')) {
-            redirect(base_url()."auth");
+            redirect(base_url()."login");
         }
         $this->load->model("Estudiantes_model");
         $this->load->helper("functions");
@@ -238,6 +238,9 @@ class Estudiantes extends CI_Controller {
         if ($this->input->post("estado")) {
             $archivo_resolucion = '';
             if (!empty($_FILES['file']['name'])) {
+                $archivo_resolucion = $this->Backend_model->get_record("estudiantes_modulos","id='$estudiante_modulo'")->archivo_resolucion;
+                unlink("assets/resoluciones/".$archivo_resolucion);
+
                 $config['upload_path']          = './assets/resoluciones/';
                 $config['allowed_types']        = 'pdf|doc|docx';
 
@@ -252,6 +255,7 @@ class Estudiantes extends CI_Controller {
         }else{
             $archivo_resolucion = $this->Backend_model->get_record("estudiantes_modulos","id='$estudiante_modulo'")->archivo_resolucion;
             if (!empty($_FILES['file']['name'])) {
+                unlink("assets/resoluciones/".$archivo_resolucion);
                 $config['upload_path']          = './assets/resoluciones/';
                 $config['allowed_types']        = 'pdf|doc|docx';
 

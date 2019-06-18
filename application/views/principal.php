@@ -208,7 +208,53 @@
             </div>
 
           	<div class="modal-body">
-             
+            	<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+				        	<label for="">Nombre del Módulo:</label><p class="info-modulo"></p>
+				        </div>
+				        <div class="form-group">
+				        	<label for="">Práctica Modular:</label>
+				        	<p class="info-practica"></p>
+				        </div>
+				        <div class="form-group">
+				        	<label for="">Título de la Práctica Modular:</label>
+				        	<p class="info-titulo"></p>
+				        </div>
+				        <div class="form-group">
+				            <label for="">Nombre del Asesor:</label>
+				            <p class="info-asesor"></p>
+				        </div>
+				        
+				        	<p><strong>Temporabilidad de la Práctica Modular</strong></p>
+				        	<div class="row">
+				        		<div class="col-md-6 form-group">
+				        			<label for="">Fecha de Inicio:</label>
+				        			<p class="info-fecha-inicio"></p>
+				        		</div>
+				        		<div class="col-md-6 form-group">
+				        			<label for="">Fecha de Termino:</label>
+				        			<p class="info-fecha-termino"></p>
+				        		</div>
+				        	</div>
+				        	
+				    
+				        <div class="form-group">
+				        	<label for="">Total de Horas:</label>
+				        	<p class="info-horas"></p>
+				        </div>
+				        <div class="form-group">
+				        	<label for="">N°. de Resolución de Aprobación:</label>
+				        	<p class="info-resolucion"></p>
+				        </div>
+				        
+				        <div class="form-group">
+				            <label for="">Documento de la Resolución de Aprobación:</label>
+				            <p class="info-documento"></p>
+				                
+				        </div>
+					</div>
+				</div>
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-danger btn-cancelar-practica pull-left" data-dismiss="modal">Cancelar</button>

@@ -12,7 +12,7 @@ class Principal extends CI_Controller {
 
         if (!$this->session->userdata('login')) {
 
-            redirect(base_url()."auth");
+            redirect(base_url()."login");
 
         }
         $this->load->model('Estudiantes_model');

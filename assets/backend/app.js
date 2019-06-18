@@ -6,15 +6,26 @@ $(document).ready(function(){
 	});
 
 	$(document).on("click", ".btn-view-informe", function(){
-		var idEstMod = $(this).val();
-		$.ajax({
-			url: base_url+ "principal/informe_practica",
-			type: "POST",
-			data: {idEstMod:idEstMod},
-			success: function(resp){
-				$("#modal-informe .modal-body").html(resp);
-			}
-		});
+		
+		var infoEstMod = $(this).val();
+		var dataEstMod = infoEstMod.split("*"); 
+		$(".info-modulo").text(dataEstMod[10]);
+		$(".info-practica").text(dataEstMod[2]);
+		$(".info-titulo").text(dataEstMod[3]);
+		$(".info-fecha-inicio").text(dataEstMod[4]);
+		$(".info-fecha-termino").text(dataEstMod[5]);
+		$(".info-horas").text(dataEstMod[6]);
+		$(".info-resolucion").text(dataEstMod[7]);
+		$(".info-asesor").text(dataEstMod[8]);
+		if (dataEstMod[9]) {
+			vinculo = "<a href='"+base_url+'principal/resoluciones/'+dataEstMod[11]+"'>"+dataEstMod[9]+"</a>"
+
+			$(".info-documento").html(vinculo);
+
+		}else{
+			$(".info-documento").html("");
+		}
+
 	});
 	$(document).on("click", ".btn-quitar-documento", function(){
 
@@ -146,8 +157,8 @@ $(document).ready(function(){
 	            		}
 	            	}else{
 	            		practica = 'SI'
-            			practica += ' <div class="btn-group" style="float:right;"><button type="button" class="btn btn-primary btn-xs btn-flat btn-view-informe" value="'+value.id+'" data-toggle="modal" data-target="#modal-informe"><span class="fa fa-eye"></span></button>'
-            			if (rol != 4) {
+						practica += " <div class='btn-group' style='float:right;'><button type='button' class='btn btn-primary btn-xs btn-flat btn-view-informe' value='"+dataEstudianteModulo+"' data-toggle='modal' data-target='#modal-informe'><span class='fa fa-eye'></span></button>";            			
+						if (rol != 4) {
             				practica += " <button type='button' class='btn btn-warning btn-xs btn-edit-practica' value='"+dataEstudianteModulo+"' data-toggle='modal' data-target='#modal-edit-practica'><span class='fa fa-pencil'></span></button>";
             			}
             			practica += ' <a href="'+base_url+'principal/reporte_practica/'+value.id+'" class="btn btn-danger btn-xs btn-flat" target="_blank"><span class="fa fa-file-pdf-o"></span></a></div>';
@@ -328,7 +339,7 @@ $(document).ready(function(){
             		}
             	}else{
             		practica = 'SI';
-            		practica += ' <div class="btn-group" style="float:right;"><button type="button" class="btn btn-primary btn-xs btn-flat btn-view-informe" value="'+value.id+'" data-toggle="modal" data-target="#modal-informe"><span class="fa fa-eye"></span></button>'
+            		practica += " <div class='btn-group' style='float:right;'><button type='button' class='btn btn-primary btn-xs btn-flat btn-view-informe' value='"+dataEstudianteModulo+"' data-toggle='modal' data-target='#modal-informe'><span class='fa fa-eye'></span></button>";
             		if (rol != 4) {
             			practica += " <button type='button' class='btn btn-warning btn-xs btn-edit-practica' value='"+dataEstudianteModulo+"' data-toggle='modal' data-target='#modal-edit-practica'><span class='fa fa-pencil'></span></button>";
             		}
