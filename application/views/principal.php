@@ -126,6 +126,11 @@
 	                        	<input type="text" name="total_horas" class="form-control" required="required">
 	                        </div>
 	                        <div class="form-group">
+	                        	<label for="">Nota Cualitativa:</label>
+	                        	<input type="text" name="nota_cualitativa" class="form-control" required="required">
+	                        </div>
+
+	                        <div class="form-group">
 	                        	<label for="">N°. de Resolución de Aprobación:</label>
 	                        	<input type="text" name="numero_resolucion" class="form-control" required="required">
 	                        </div>
@@ -244,6 +249,10 @@
 				        	<p class="info-horas"></p>
 				        </div>
 				        <div class="form-group">
+				        	<label for="">Nota Cualitativa:</label>
+				        	<p class="info-nota"></p>
+				        </div>
+				        <div class="form-group">
 				        	<label for="">N°. de Resolución de Aprobación:</label>
 				        	<p class="info-resolucion"></p>
 				        </div>
@@ -306,6 +315,10 @@
 	                        <div class="form-group">
 	                        	<label for="">Total de Horas:</label>
 	                        	<input type="text" name="total_horas" class="form-control" required="required">
+	                        </div>
+	                        <div class="form-group">
+	                        	<label for="">Nota Cualitativa:</label>
+	                        	<input type="text" name="nota_cualitativa" class="form-control" required="required">
 	                        </div>
 	                        <div class="form-group">
 	                        	<label for="">N°. de Resolución de Aprobación:</label>

@@ -191,6 +191,7 @@ class Estudiantes extends CI_Controller {
         $fecha_inicio = $this->input->post("fecha_inicio");
         $fecha_termino = $this->input->post("fecha_termino");
         $total_horas = $this->input->post("total_horas");
+        $nota_cualitativa = $this->input->post("nota_cualitativa");
         $numero_resolucion = $this->input->post("numero_resolucion");
         $asesor = $this->input->post("asesor");
         $archivo_resolucion = '';
@@ -216,6 +217,7 @@ class Estudiantes extends CI_Controller {
             'numero_resolucion' => $numero_resolucion,
             'asesor' => $asesor,
             'archivo_resolucion' => $archivo_resolucion,
+            'nota_cualitativa' => $nota_cualitativa,
         );
         if($this->Estudiantes_model->updateEstudianteModulo($estudiante_id,$modulo_id,$data)){
             echo $estudiante_id;
@@ -232,6 +234,7 @@ class Estudiantes extends CI_Controller {
         $fecha_inicio = $this->input->post("fecha_inicio");
         $fecha_termino = $this->input->post("fecha_termino");
         $total_horas = $this->input->post("total_horas");
+        $nota_cualitativa = $this->input->post("nota_cualitativa");
         $numero_resolucion = $this->input->post("numero_resolucion");
         $asesor = $this->input->post("asesor");
 
@@ -279,6 +282,7 @@ class Estudiantes extends CI_Controller {
             'numero_resolucion' => $numero_resolucion,
             'asesor' => $asesor,
             'archivo_resolucion' => $archivo_resolucion,
+            'nota_cualitativa' => $nota_cualitativa,
         );
         if($this->Backend_model->update("estudiantes_modulos","id=$estudiante_modulo",$data)){
             echo "1";

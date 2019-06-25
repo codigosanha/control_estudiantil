@@ -15,6 +15,7 @@ $(document).ready(function(){
 		$(".info-fecha-inicio").text(dataEstMod[4]);
 		$(".info-fecha-termino").text(dataEstMod[5]);
 		$(".info-horas").text(dataEstMod[6]);
+		$(".info-nota").text(dataEstMod[12]);
 		$(".info-resolucion").text(dataEstMod[7]);
 		$(".info-asesor").text(dataEstMod[8]);
 		if (dataEstMod[9]) {
@@ -147,7 +148,7 @@ $(document).ready(function(){
 			success: function(data){
 				html = '';
 		        $.each(data, function(key, value){
-            		dataEstudianteModulo = value.estudiante_id +"*"+ value.modulo_id+"*"+ value.practica_modular+"*"+ value.titulo_practica+"*"+ value.fecha_inicio+"*"+ value.fecha_termino+"*"+ value.total_horas+"*"+ value.numero_resolucion +"*"+ value.asesor+"*"+ value.archivo_resolucion+"*"+value.nombre+"*"+value.id;
+            		dataEstudianteModulo = value.estudiante_id +"*"+ value.modulo_id+"*"+ value.practica_modular+"*"+ value.titulo_practica+"*"+ value.fecha_inicio+"*"+ value.fecha_termino+"*"+ value.total_horas+"*"+ value.numero_resolucion +"*"+ value.asesor+"*"+ value.archivo_resolucion+"*"+value.nombre+"*"+value.id+"*"+value.nota_cualitativa;
 	            	html += '<tr id="mod'+value.modulo_id+'">';
 	            	html += '<td><input type="hidden" value="'+dataEstudianteModulo+'">'+value.nombre+'</td>';
 	            	if (!value.practica_realizada) {
@@ -329,7 +330,7 @@ $(document).ready(function(){
             $("#especialidad").text(ui.item.especialidad);
             html = '';
             $.each(ui.item.modulos, function(key, value){
-            	dataEstudianteModulo = value.estudiante_id +"*"+ value.modulo_id+"*"+ value.practica_modular+"*"+ value.titulo_practica+"*"+ value.fecha_inicio+"*"+ value.fecha_termino+"*"+ value.total_horas+"*"+ value.numero_resolucion +"*"+ value.asesor+"*"+ value.archivo_resolucion+"*"+value.nombre+"*"+value.id;
+            	dataEstudianteModulo = value.estudiante_id +"*"+ value.modulo_id+"*"+ value.practica_modular+"*"+ value.titulo_practica+"*"+ value.fecha_inicio+"*"+ value.fecha_termino+"*"+ value.total_horas+"*"+ value.numero_resolucion +"*"+ value.asesor+"*"+ value.archivo_resolucion+"*"+value.nombre+"*"+value.id+"*"+value.nota_cualitativa;
             	html += '<tr id="mod'+value.modulo_id+'">';
             	html += '<td><input type="hidden" value="'+dataEstudianteModulo+'">'+value.nombre+'</td>';
             	if (!value.practica_realizada) {

@@ -35,6 +35,10 @@
         	<?php echo $informe->total_horas;?>
         </div>
         <div class="form-group">
+            <label for="">Nota Cualitativa:</label><br>
+            <?php echo $informe->nota_cualitativa;?>
+        </div>
+        <div class="form-group">
         	<label for="">N°. de Resolución de Aprobación:</label><br>
         	<?php echo $informe->numero_resolucion;?>
         </div>
