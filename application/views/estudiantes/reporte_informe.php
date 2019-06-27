@@ -67,6 +67,10 @@
 		<td colspan="4"><?php echo $informe->total_horas;?></td>
 	</tr>
 	<tr>
+		<th>Nota Cualitativa:</th>
+		<td colspan="4"><?php echo $informe->nota_cualitativa;?></td>
+	</tr>
+	<tr>
 		<th>N°. de resolución de aprobacion	</th>
 		<td colspan="4"><?php echo $informe->numero_resolucion;?></td>
 	</tr>
